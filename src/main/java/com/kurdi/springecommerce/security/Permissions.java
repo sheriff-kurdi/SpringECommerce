@@ -1,8 +1,8 @@
 package com.kurdi.springecommerce.security;
 
 public enum Permissions {
-    EmployeeRead("employee:read"),
-    EmployeeWrite("employee:write");
+    EmployeeRead("product:read"),
+    EmployeeWrite("product:write");
 
 
     private final String permission;

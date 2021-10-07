@@ -1,8 +1,8 @@
 package com.kurdi.springecommerce.security;
 
 public enum Roles {
-    ADMIN("ROLE_ADMIN"),
-    Editor("ROLE_EDITOR");
+    ADMIN("ROLE_SUPPLIER"),
+    Editor("ROLE_CUSTOMER");
 
 
 
