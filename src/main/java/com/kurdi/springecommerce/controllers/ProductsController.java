@@ -33,6 +33,7 @@ public class ProductsController {
     @PostMapping("/")
     public ResponseEntity post(@RequestBody Product product)
     {
+        product.setId(null);
         productsRepository.save(product);
         return new ResponseEntity(product, HttpStatus.CREATED);
     }
