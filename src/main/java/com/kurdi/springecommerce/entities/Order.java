@@ -29,4 +29,8 @@ public class Order {
     )
     @CollectionTable(name = "CART_ITEMS")
     protected Set<CartItem> cartItem = new HashSet<>();
+
+    @OneToMany(mappedBy = "order",
+            fetch = FetchType.LAZY)
+    protected Set<OrderItem> orderItems = new HashSet<>();
 }
