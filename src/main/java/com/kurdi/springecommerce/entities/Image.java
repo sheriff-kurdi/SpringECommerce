@@ -22,10 +22,10 @@ public class Image {
 
         return true;
     }
-/*    @Override
+    @Override
     public int hashCode() {
         int result = name.hashCode();
         result = 31 * result + url.hashCode();
         return result;
-    }*/
+    }
 }
