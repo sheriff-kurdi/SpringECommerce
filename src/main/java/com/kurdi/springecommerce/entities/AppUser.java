@@ -25,7 +25,7 @@ public class AppUser implements Serializable {
     @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Authority> authorities = new ArrayList<>();
     @OneToOne(
-            mappedBy = "user",
+            mappedBy = "appUser",
             cascade = CascadeType.PERSIST
     )
     private Address shippingAddress;
