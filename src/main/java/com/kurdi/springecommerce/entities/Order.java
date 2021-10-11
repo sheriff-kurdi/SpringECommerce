@@ -31,6 +31,10 @@ public class Order {
     protected Set<CartItem> cartItem = new HashSet<>();
 
     @OneToMany(mappedBy = "order",
-            fetch = FetchType.LAZY)
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.PERSIST,
+            //tells Hibernate that you want to permanently
+            //remove a orderItem when it’s removed from the collection.
+            orphanRemoval = true)
     protected Set<OrderItem> orderItems = new HashSet<>();
 }
