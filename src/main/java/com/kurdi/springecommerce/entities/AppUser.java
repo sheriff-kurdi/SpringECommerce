@@ -24,5 +24,10 @@ public class AppUser implements Serializable {
     private String password;
     @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Authority> authorities = new ArrayList<>();
+    @OneToOne(
+            mappedBy = "user",
+            cascade = CascadeType.PERSIST
+    )
+    private Address shippingAddress;
 
 }
