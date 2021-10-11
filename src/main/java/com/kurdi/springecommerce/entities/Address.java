@@ -17,5 +17,5 @@ public class Address {
             //often a surprise for developers new to JPA. The default for @OneToOne is Fetch-Type.EAGER
             optional = false
     )
-    protected Address shippingAddress;
+    protected AppUser appUser;
 }
