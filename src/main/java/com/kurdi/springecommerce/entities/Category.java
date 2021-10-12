@@ -28,6 +28,6 @@ public class Category {
             joinColumns = @JoinColumn(name = "CATEGORY_ID"),
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID")
     )
-    protected Set<Product> items = new HashSet<>();
+    protected Set<Product> products = new HashSet<>();
 
 }
