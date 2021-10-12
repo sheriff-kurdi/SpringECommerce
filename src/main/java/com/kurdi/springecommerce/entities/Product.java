@@ -33,5 +33,7 @@ public class Product {
     )
     @CollectionTable(name = "IMAGE")
     protected Set<Image> images = new HashSet<Image>();
+    @ManyToMany(mappedBy = "products")
+    protected Set<Category> categories = new HashSet<Category>();
 
 }

@@ -6,10 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -23,5 +22,12 @@ public class Category {
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
     private String name;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "CATEGORY_Product",
+            joinColumns = @JoinColumn(name = "CATEGORY_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID")
+    )
+    protected Set<Product> items = new HashSet<>();
 
 }
