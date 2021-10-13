@@ -1,5 +1,6 @@
 package com.kurdi.springecommerce.domain.entities.CartsAggregate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
 import lombok.*;
@@ -24,6 +25,7 @@ public class Cart {
             fetch = FetchType.LAZY,
             optional = false
     )
+    @JsonIgnore
     protected AppUser user;
 
     @OneToMany(mappedBy = "cart",
