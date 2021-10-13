@@ -15,6 +15,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class CartItem {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Product_ID")
     private Product product;
@@ -24,5 +27,11 @@ public class CartItem {
     private Cart cart;
 
     private int quantity;
+
+    public CartItem(Product product, Cart cart, int quantity) {
+        this.product = product;
+        this.cart = cart;
+        this.quantity = quantity;
+    }
 
 }
