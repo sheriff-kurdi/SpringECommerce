@@ -1,6 +1,7 @@
 package com.kurdi.springecommerce.domain.entities.CartsAggregate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,13 +10,16 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartItem {
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+
+public class CartItem implements Serializable {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
