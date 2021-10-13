@@ -44,6 +44,7 @@ public class UsersService {
 
         if (userRepository.findUserByUsername(user.getUsername()).isEmpty()) {
             userRepository.save(user);
+            //TODO when creating user make an app event to create his cart instead of making it here.
             user.setCart(new Cart(user));
             userRepository.save(user);
 
