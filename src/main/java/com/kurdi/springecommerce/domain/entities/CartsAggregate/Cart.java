@@ -12,6 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "carts")
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cart {

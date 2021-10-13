@@ -33,8 +33,8 @@ public class AppUser implements Serializable {
 
     @OneToOne(
             mappedBy = "user",
-            cascade = CascadeType.PERSIST
+            cascade = CascadeType.ALL
     )
-    private Cart cart = new Cart(this);
+    private Cart cart;
 
 }
