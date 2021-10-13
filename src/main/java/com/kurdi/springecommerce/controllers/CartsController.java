@@ -29,6 +29,7 @@ public class CartsController {
     @GetMapping("/")
     public ResponseEntity<Cart> get() {
         AppUser user = usersRepository.findUserByUsername("sheriff").get();
-        return ResponseEntity.ok(user.getCart());
+        Cart cart = user.getCart();
+        return ResponseEntity.ok(cart);
     }
 }
