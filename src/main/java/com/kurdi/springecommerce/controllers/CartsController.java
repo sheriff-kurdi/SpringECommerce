@@ -21,9 +21,8 @@ public class CartsController {
     UsersRepository usersRepository;
 
     @GetMapping("/addToCart")
-    public ResponseEntity<List<CartItem>> addToCart(@RequestBody String userName) {
-        AppUser user = usersRepository.findUserByUsername(userName).get();
-        return ResponseEntity.ok(user.getCart().getCartItems().stream().toList());
+    public ResponseEntity<Cart> addToCart() {
+        return ResponseEntity.ok(cartsService.AddToCartDemo());
     }
 
     @GetMapping("/")

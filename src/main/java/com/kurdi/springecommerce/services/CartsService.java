@@ -23,7 +23,17 @@ public class CartsService {
     public Cart addToCart(Product product, AppUser user, int quantity) {
         user.getCart().addToCart(product, quantity);
         userRepository.save(user);
-        return new Cart();
+        return user.getCart();
+    }
+
+    public Cart AddToCartDemo() {
+        Product product = Product.builder()
+                .name("shirt")
+                .price(150)
+                .build();
+        AppUser user = userRepository.findUserByUsername("sheriff").get();
+        Cart cart = addToCart(product, user, 22);
+        return cart;
     }
 
     public Cart getCart(AppUser user) {
