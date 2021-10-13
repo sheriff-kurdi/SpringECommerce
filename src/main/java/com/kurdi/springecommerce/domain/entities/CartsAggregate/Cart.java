@@ -1,5 +1,6 @@
 package com.kurdi.springecommerce.domain.entities.CartsAggregate;
 
+import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -15,9 +16,14 @@ import java.util.Set;
 @NoArgsConstructor
 public class Cart {
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
+    @OneToOne(
+            fetch = FetchType.LAZY,
+            optional = false
+    )
+    protected AppUser user;
 
     @OneToMany(mappedBy = "cart",
             fetch = FetchType.LAZY,
@@ -29,17 +35,18 @@ public class Cart {
     @Setter(AccessLevel.NONE)
     private double Total;
 
-    public double getTotal()
-    {
-        for (CartItem cartItem : cartItems)
-        {
-            this.Total += cartItem.getQuantity() * cartItem.getProduct().getPrice();
-        }
-        return  this.Total;
+    public Cart(AppUser user) {
+        this.user = user;
     }
 
-    public void addToCart(Product product, int quantity)
-    {
+    public double getTotal() {
+        for (CartItem cartItem : cartItems) {
+            this.Total += cartItem.getQuantity() * cartItem.getProduct().getPrice();
+        }
+        return this.Total;
+    }
+
+    public void addToCart(Product product, int quantity) {
         CartItem cartItem = new CartItem(product, this, quantity);
         this.cartItems.add(cartItem);
     }
