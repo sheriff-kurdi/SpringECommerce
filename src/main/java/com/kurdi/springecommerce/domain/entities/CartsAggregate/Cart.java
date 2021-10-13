@@ -13,7 +13,8 @@ import java.util.Set;
 @Entity
 @Table(name = "carts")
 @Builder
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cart {
@@ -34,22 +35,20 @@ public class Cart {
             orphanRemoval = true)
     protected Set<CartItem> cartItems = new HashSet<>();
 
-    /*   @Getter(AccessLevel.NONE)
-       @Setter(AccessLevel.NONE)*/
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private double Total;
 
     public Cart(AppUser user) {
         this.user = user;
     }
 
-/*
     public double getTotal() {
         for (CartItem cartItem : cartItems) {
             this.Total += cartItem.getQuantity() * cartItem.getProduct().getPrice();
         }
         return this.Total;
     }
-*/
 
     public void addToCart(Product product, int quantity) {
         CartItem cartItem = new CartItem(product, this, quantity);
