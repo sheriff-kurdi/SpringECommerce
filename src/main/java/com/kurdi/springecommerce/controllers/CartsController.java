@@ -22,7 +22,8 @@ public class CartsController {
 
     @GetMapping("/addToCart")
     public ResponseEntity<Cart> addToCart() {
-        return ResponseEntity.ok(cartsService.AddToCartDemo());
+        Cart cart = cartsService.AddToCartDemo();
+        return ResponseEntity.ok(cart);
     }
 
     @GetMapping("/")
