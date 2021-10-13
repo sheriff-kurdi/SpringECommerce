@@ -1,5 +1,6 @@
 package com.kurdi.springecommerce.domain.entities.CartsAggregate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +25,7 @@ public class CartItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Cart_ID")
+    @JsonIgnore
     private Cart cart;
 
     private int quantity;
