@@ -1,5 +1,6 @@
 package com.kurdi.springecommerce.domain.entities.CartsAggregate;
 
+import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,7 +10,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "carts")
-@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,6 +37,14 @@ public class Cart {
         }
         return  this.Total;
     }
+
+    public void addToCart(Product product, int quantity)
+    {
+        CartItem cartItem = new CartItem(product, this, quantity);
+        this.cartItems.add(cartItem);
+    }
+
+
 }
 
 
