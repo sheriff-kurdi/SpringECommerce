@@ -1,8 +1,6 @@
 package com.kurdi.springecommerce.security.filters;
 
 import com.google.common.base.Strings;
-import com.kurdi.springecommerce.entities.AppUser;
-import com.kurdi.springecommerce.entities.Authority;
 import com.kurdi.springecommerce.security.Roles;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

@@ -1,6 +1,6 @@
 package com.kurdi.springecommerce.security;
 
-import com.kurdi.springecommerce.entities.AppUser;
+import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
 import com.kurdi.springecommerce.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;

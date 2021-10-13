@@ -1,8 +1,6 @@
 package com.kurdi.springecommerce;
 
-import com.kurdi.springecommerce.entities.Image;
-import io.swagger.models.auth.In;
-import org.assertj.core.api.Assert;
+import com.kurdi.springecommerce.domain.entities.productsAggregate.Image;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

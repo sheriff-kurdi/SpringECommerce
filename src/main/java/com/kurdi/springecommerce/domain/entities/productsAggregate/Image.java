@@ -1,4 +1,4 @@
-package com.kurdi.springecommerce.entities;
+package com.kurdi.springecommerce.domain.entities.productsAggregate;
 
 import lombok.Builder;
 import lombok.Data;

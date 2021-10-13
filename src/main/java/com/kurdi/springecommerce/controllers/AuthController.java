@@ -1,7 +1,7 @@
 package com.kurdi.springecommerce.controllers;
 
-import com.kurdi.springecommerce.entities.AppUser;
-import com.kurdi.springecommerce.entities.Authority;
+import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
+import com.kurdi.springecommerce.domain.entities.UsersAggregate.Authority;
 import com.kurdi.springecommerce.repositories.UserRepository;
 import com.kurdi.springecommerce.security.Permissions;
 import com.kurdi.springecommerce.security.Roles;

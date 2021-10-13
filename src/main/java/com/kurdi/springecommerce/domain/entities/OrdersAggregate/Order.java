@@ -1,5 +1,6 @@
-package com.kurdi.springecommerce.entities;
+package com.kurdi.springecommerce.domain.entities.OrdersAggregate;
 
+import com.kurdi.springecommerce.domain.entities.CartsAggregate.CartItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.kurdi.springecommerce.security;
 
-import com.kurdi.springecommerce.entities.AppUser;
+import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

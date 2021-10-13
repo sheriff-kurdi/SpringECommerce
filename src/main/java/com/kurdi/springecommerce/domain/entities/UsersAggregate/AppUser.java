@@ -1,4 +1,4 @@
-package com.kurdi.springecommerce.entities;
+package com.kurdi.springecommerce.domain.entities.UsersAggregate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
