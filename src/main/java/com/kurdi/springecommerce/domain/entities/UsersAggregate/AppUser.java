@@ -1,5 +1,6 @@
 package com.kurdi.springecommerce.domain.entities.UsersAggregate;
 
+import com.kurdi.springecommerce.domain.entities.CartsAggregate.Cart;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,9 +26,15 @@ public class AppUser implements Serializable {
     @OneToMany(mappedBy = "appUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Authority> authorities = new ArrayList<>();
     @OneToOne(
-            mappedBy = "appUser",
+            mappedBy = "user",
             cascade = CascadeType.PERSIST
     )
     private Address shippingAddress;
+
+    @OneToOne(
+            mappedBy = "user",
+            cascade = CascadeType.PERSIST
+    )
+    private Cart cart = new Cart(this);
 
 }
