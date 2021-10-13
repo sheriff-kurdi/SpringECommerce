@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Entity
 public class Address {
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
     private String street;
     @OneToOne(
@@ -17,5 +17,5 @@ public class Address {
             //often a surprise for developers new to JPA. The default for @OneToOne is Fetch-Type.EAGER
             optional = false
     )
-    protected AppUser appUser;
+    protected AppUser user;
 }
