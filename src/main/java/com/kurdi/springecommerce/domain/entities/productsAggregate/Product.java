@@ -18,12 +18,12 @@ import java.util.Set;
 @NoArgsConstructor
 public class Product {
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
     private String name;
     private double price;
-    @ElementCollection
+/*    @ElementCollection
     //edit table without changing the embeddable class
     @AttributeOverride(
             name = "name",
@@ -32,6 +32,6 @@ public class Product {
     @CollectionTable(name = "IMAGE")
     protected Set<Image> images = new HashSet<Image>();
     @ManyToMany(mappedBy = "products")
-    protected Set<Category> categories = new HashSet<Category>();
+    protected Set<Category> categories = new HashSet<Category>();*/
 
 }
