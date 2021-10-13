@@ -1,10 +1,7 @@
 package com.kurdi.springecommerce.domain.entities.UsersAggregate;
 
 import com.kurdi.springecommerce.domain.entities.CartsAggregate.Cart;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
