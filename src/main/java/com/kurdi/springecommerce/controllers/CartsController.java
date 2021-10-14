@@ -3,6 +3,7 @@ package com.kurdi.springecommerce.controllers;
 import com.kurdi.springecommerce.domain.entities.CartsAggregate.Cart;
 import com.kurdi.springecommerce.domain.entities.CartsAggregate.CartItem;
 import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
+import com.kurdi.springecommerce.dto.cart.EditCartItemDTO;
 import com.kurdi.springecommerce.repositories.UsersRepository;
 import com.kurdi.springecommerce.services.CartsService;
 import com.kurdi.springecommerce.services.UsersService;
@@ -31,5 +32,19 @@ public class CartsController {
         AppUser user = usersRepository.findUserByUsername("sheriff").get();
         Cart cart = user.getCart();
         return ResponseEntity.ok(cart);
+    }
+
+    @DeleteMapping("/")
+    public ResponseEntity<Cart> delete() {
+        AppUser user = usersRepository.findUserByUsername("sheriff").get();
+        Cart cart = cartsService.clearCart(user);
+        return ResponseEntity.ok(cart);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<Cart> edit(@RequestBody List<EditCartItemDTO> editCartItemDTOS) {
+        AppUser user = usersRepository.findUserByUsername("sheriff").get();
+        Cart updatedCart = cartsService.ediCart(user, editCartItemDTOS);
+        return ResponseEntity.ok(updatedCart);
     }
 }

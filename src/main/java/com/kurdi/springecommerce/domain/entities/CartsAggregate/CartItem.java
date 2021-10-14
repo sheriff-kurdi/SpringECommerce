@@ -29,7 +29,11 @@ public class CartItem implements Serializable {
     @JoinColumn(name = "Product_ID")
     private Product product;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY
+/*
+            cascade = CascadeType.ALL
+*/
+    )
     @JoinColumn(name = "Cart_ID")
     @JsonIgnore
     private Cart cart;
