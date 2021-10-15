@@ -4,7 +4,7 @@ import com.kurdi.springecommerce.domain.entities.CartsAggregate.Cart;
 import com.kurdi.springecommerce.domain.entities.CartsAggregate.CartItem;
 import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
-import com.kurdi.springecommerce.dto.cart.EditCartItemDTO;
+import com.kurdi.springecommerce.dto.cart.CartItemDTO;
 import com.kurdi.springecommerce.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +25,15 @@ public class CartsService {
     @Autowired
     CartItemsRepository cartItemsRepository;
 
+
+    public Cart addRangeToCart(AppUser user, Set<CartItemDTO> cartItemDTOSet) {
+        for (CartItemDTO cartItemDTO : cartItemDTOSet) {
+            Product product = productsRepository.getById(cartItemDTO.getProductId());
+            addToCart(user, product, cartItemDTO.getQuantity());
+        }
+        return user.getCart();
+
+    }
 
     public Cart addToCart(AppUser user, Product product, int quantity) {
         user.getCart().addToCart(product, quantity);
@@ -47,14 +56,14 @@ public class CartsService {
         return cartsRepository.findById(user.getCart().getId()).get();
     }
 
-    public Cart ediCart(AppUser user, List<EditCartItemDTO> editCartItemDTOS) {
+    public Cart ediCart(AppUser user, List<CartItemDTO> cartItemDTOS) {
         clearCart(user);
         Cart userCart = getCart(user);
 
-        for (EditCartItemDTO editCartItemDTO : editCartItemDTOS) {
-            if (productsRepository.existsById(editCartItemDTO.getProductId())) {
-                Product product = productsRepository.getById(editCartItemDTO.getProductId());
-                addToCart(user, product, editCartItemDTO.getQuantity());
+        for (CartItemDTO cartItemDTO : cartItemDTOS) {
+            if (productsRepository.existsById(cartItemDTO.getProductId())) {
+                Product product = productsRepository.getById(cartItemDTO.getProductId());
+                addToCart(user, product, cartItemDTO.getQuantity());
             }
         }
         return getCart(user);
