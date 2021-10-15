@@ -21,10 +21,10 @@ public class CartsController {
     UsersRepository usersRepository;
 
 
-    @PostMapping("/addToCart")
+    @PostMapping("/")
     public ResponseEntity<Cart> addToCart(@RequestBody Set<CartItemDTO> cartItemDTOSet) {
         AppUser user = usersRepository.findUserByUsername("sheriff").get();
-
+   
         Cart cart = cartsService.addRangeToCart(user, cartItemDTOSet);
         return ResponseEntity.ok(cart);
     }
