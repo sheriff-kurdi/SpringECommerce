@@ -1,17 +1,16 @@
 package com.kurdi.springecommerce.controllers;
 
 import com.kurdi.springecommerce.domain.entities.CartsAggregate.Cart;
-import com.kurdi.springecommerce.domain.entities.CartsAggregate.CartItem;
 import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
-import com.kurdi.springecommerce.dto.cart.EditCartItemDTO;
+import com.kurdi.springecommerce.dto.cart.CartItemDTO;
 import com.kurdi.springecommerce.repositories.UsersRepository;
 import com.kurdi.springecommerce.services.CartsService;
-import com.kurdi.springecommerce.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("Api/Carts/")
@@ -21,9 +20,12 @@ public class CartsController {
     @Autowired
     UsersRepository usersRepository;
 
-    @GetMapping("/addToCart")
-    public ResponseEntity<Cart> addToCart() {
-        Cart cart = cartsService.AddToCartDemo();
+
+    @PostMapping("/addToCart")
+    public ResponseEntity<Cart> addToCart(@RequestBody Set<CartItemDTO> cartItemDTOSet) {
+        AppUser user = usersRepository.findUserByUsername("sheriff").get();
+
+        Cart cart = cartsService.addRangeToCart(user, cartItemDTOSet);
         return ResponseEntity.ok(cart);
     }
 
@@ -42,9 +44,9 @@ public class CartsController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<Cart> edit(@RequestBody List<EditCartItemDTO> editCartItemDTOS) {
+    public ResponseEntity<Cart> edit(@RequestBody List<CartItemDTO> cartItemDTOS) {
         AppUser user = usersRepository.findUserByUsername("sheriff").get();
-        Cart updatedCart = cartsService.ediCart(user, editCartItemDTOS);
+        Cart updatedCart = cartsService.ediCart(user, cartItemDTOS);
         return ResponseEntity.ok(updatedCart);
     }
 }
