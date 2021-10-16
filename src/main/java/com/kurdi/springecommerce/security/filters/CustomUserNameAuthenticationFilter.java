@@ -2,23 +2,29 @@ package com.kurdi.springecommerce.security.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kurdi.springecommerce.security.UsernameAndPasswordAuthenticationRequest;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.Key;
+import java.util.Base64;
 
 public class CustomUserNameAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
+    private String userId;
 
-    public  CustomUserNameAuthenticationFilter(AuthenticationManager authenticationManager)
-    {
+    public CustomUserNameAuthenticationFilter(AuthenticationManager authenticationManager) {
 
         this.authenticationManager = authenticationManager;
     }
@@ -35,6 +41,8 @@ public class CustomUserNameAuthenticationFilter extends UsernamePasswordAuthenti
                     authenticationRequest.getPassword()
             );
 
+            userId = authentication.getName();
+
             Authentication authenticate = authenticationManager.authenticate(authentication);
             return authenticate;
 
@@ -49,7 +57,16 @@ public class CustomUserNameAuthenticationFilter extends UsernamePasswordAuthenti
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
 
+        String secret = "asdfSFS34wfsdfsdfSDSD32dfsddDDerQSNCK34SOWEK5354fdgdf4";
+        Key key = new SecretKeySpec(Base64.getDecoder().decode(secret),
 
-        response.addHeader("Authentication", "auth");
+
+                SignatureAlgorithm.HS256.getJcaName());
+        String jws = Jwts.builder()
+                .setId(userId)
+                .setSubject("kurdi").signWith(key).compact();
+
+
+        response.addHeader("Authentication", jws);
     }
 }
