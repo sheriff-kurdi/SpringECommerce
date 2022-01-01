@@ -1,37 +1,24 @@
-package com.kurdi.springecommerce.controllers;
+package com.kurdi.springecommerce.controllers.api;
 
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
 import com.kurdi.springecommerce.repositories.ProductsRepository;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("products")
-public class ProductsController {
+@RestController
+@RequestMapping("api/products/")
+public class ProductsAPIController {
     @Autowired
     ProductsRepository productsRepository;
     @GetMapping("/")
-    public String get(Model model)
+    public List<Product> get()
     {
-        model.addAttribute("products", productsRepository.findAll());
-        return "products/products";
+        return productsRepository.findAll();
     }
-
-    @GetMapping("/create")
-    public String create(Model model)
-    {
-        model.addAttribute("product", new Product());
-        return "products/create";
-    }
-
-    /*
 
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable String id)
@@ -71,7 +58,7 @@ public class ProductsController {
         }
         productsRepository.delete(productsRepository.findById(id).get());
         return new ResponseEntity(productsRepository.findById(id), HttpStatus.OK);
-    }*/
+    }
 
 
 }
