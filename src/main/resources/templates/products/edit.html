@@ -6,13 +6,14 @@
 <div  th:replace="shared/_layout::nav"> </div>
 
 <form action="#" th:action="@{/products/save}" th:object="${product}" method="post">
+    <input  type="text" th:field="*{id}" id="id" placeholder="id">
     <label for="name">Name</label>
     <input type="text" th:field="*{name}" id="name" placeholder="Name">
     <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
     <label for="email">Price</label>
     <input type="text" th:field="*{price}" id="email" placeholder="price">
     <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
-    <input type="submit" class="btn btn-sm btn-primary" value="Add Products">
+    <input type="submit" class="btn btn-sm btn-secondary" value="Edit Products">
 </form>
 </body>
 </html>

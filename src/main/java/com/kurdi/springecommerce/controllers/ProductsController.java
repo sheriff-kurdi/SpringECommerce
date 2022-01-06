@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,32 @@ public class ProductsController {
         model.addAttribute("product", new Product());
         return "products/create";
     }
+    @PostMapping("/save")
+    public String save( Product product, BindingResult result, Model model)
+    {
+       // product.setId(null);
+        productsRepository.save(product);
+        return "redirect:/products/";
+    }
+
+    @GetMapping("edit/{id}")
+    public String edit(@PathVariable("id") String id, Model model) {
+        Product product = productsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
+        model.addAttribute("product", product);
+        return "products/edit";
+    }
+
+    @DeleteMapping("delete/{id}")
+    public String delete(@PathVariable String id)
+    {
+        if (!productsRepository.existsById(id))
+        {
+            return "redirect:/products/";
+        }
+        productsRepository.delete(productsRepository.findById(id).get());
+        return "redirect:/products/";
+    }
 
     /*
 
@@ -43,13 +70,7 @@ public class ProductsController {
         return new ResponseEntity(productsRepository.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/")
-    public ResponseEntity post(@RequestBody Product product)
-    {
-        product.setId(null);
-        productsRepository.save(product);
-        return new ResponseEntity(product, HttpStatus.CREATED);
-    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity put(@RequestBody Product product, @PathVariable String id)
