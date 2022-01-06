@@ -1,4 +1,4 @@
-package com.kurdi.springecommerce.controllers;
+package com.kurdi.springecommerce.controllers.api;
 
 import com.kurdi.springecommerce.domain.entities.CartsAggregate.Cart;
 import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;

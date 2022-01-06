@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/products/")
-public class ProductsAPIController {
+public class ProductsController {
     @Autowired
     ProductsRepository productsRepository;
     @GetMapping("/")

@@ -1,6 +1,5 @@
 package com.kurdi.springecommerce.cart;
 
-import com.kurdi.springecommerce.controllers.CartsController;
 import com.kurdi.springecommerce.dto.cart.CartItemDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

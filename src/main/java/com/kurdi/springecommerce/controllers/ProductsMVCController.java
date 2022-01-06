@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("products")
-public class ProductsController {
+public class ProductsMVCController {
     @Autowired
     ProductsRepository productsRepository;
     @GetMapping("/")
