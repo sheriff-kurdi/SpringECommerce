@@ -1,4 +1,4 @@
-package com.kurdi.springecommerce.controllers;
+package com.kurdi.springecommerce.controllers.api;
 
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Category;
 import com.kurdi.springecommerce.repositories.CategoriesRepository;
