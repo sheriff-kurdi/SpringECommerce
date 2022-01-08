@@ -1,0 +1,47 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<head th:replace="shared/_layout::header"></head>
+
+
+<body>
+
+
+<!-- Side nav -->
+<div th:replace="shared/_layout::sidenav"></div>
+
+<!-- Main content -->
+<div class="main-content" id="panel">
+    <div th:replace="shared/_layout::topnav"></div>
+
+    <br>
+    <div class="container ">
+        <form action="#" th:action="@{/categories/save}" th:object="${category}" method="post">
+            <input hidden type="text" th:field="*{id}" id="id" placeholder="id">
+            <div class="p-4 bg-secondary">
+                <label for="name">Name</label>
+                <input type="text" class="form-control form-control-alternative" th:field="*{name}" id="name" placeholder="Name">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </div>
+
+            <div class="p-4 bg-secondary">
+                <input type="submit" class="btn btn-sm btn-primary" value="Edit Products">
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+<!-- Argon Scripts -->
+<head th:replace="shared/_layout::scripts"></head>
+
+</body>
+
+</html>
+
+

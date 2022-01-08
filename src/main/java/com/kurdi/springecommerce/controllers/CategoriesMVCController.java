@@ -1,8 +1,8 @@
 package com.kurdi.springecommerce.controllers;
 
+import com.kurdi.springecommerce.domain.entities.productsAggregate.Category;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
-import com.kurdi.springecommerce.repositories.ProductsRepository;
-import org.dom4j.rule.Mode;
+import com.kurdi.springecommerce.repositories.CategoriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,55 +10,54 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
-@ApiIgnore
+
 @Controller
-@RequestMapping("products")
-public class ProductsMVCController {
+@RequestMapping("categories")
+public class CategoriesMVCController {
     @Autowired
-    ProductsRepository productsRepository;
+    CategoriesRepository categoriesRepository;
 
 
     @GetMapping("/")
     public String get(Model model)
     {
-        model.addAttribute("products", productsRepository.findAll());
-        return "products/index";
+        model.addAttribute("categories", categoriesRepository.findAll());
+        return "categories/index";
     }
 
     @GetMapping("/create")
     public String create(Model model)
     {
-        model.addAttribute("product", new Product());
-        return "products/create";
+        model.addAttribute("category", new Category());
+        return "categories/create";
     }
     @PostMapping("/save")
-    public String save( Product product, BindingResult result, Model model)
+    public String save(Category category, BindingResult result, Model model)
     {
-       // product.setId(null);
-        productsRepository.save(product);
-        return "redirect:/products/";
+        // product.setId(null);
+        categoriesRepository.save(category);
+        return "redirect:/categories/";
     }
 
     @GetMapping("edit/{id}")
     public String edit(@PathVariable("id") String id, Model model) {
-        Product product = productsRepository.findById(id)
+        Category category = categoriesRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
-        model.addAttribute("product", product);
-        return "products/edit";
+        model.addAttribute("category", category);
+        return "category/edit";
     }
 
     @GetMapping("delete/{id}")
     public String delete(@PathVariable String id)
     {
-        if (!productsRepository.existsById(id))
+        if (!categoriesRepository.existsById(id))
         {
-            return "redirect:/products/";
+            return "redirect:/categories/";
         }
-        productsRepository.delete(productsRepository.findById(id).get());
-        return "redirect:/products/";
+        categoriesRepository.delete(categoriesRepository.findById(id).get());
+        return "redirect:/categories/";
     }
 
 
