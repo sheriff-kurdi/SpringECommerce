@@ -10,7 +10,7 @@ public class HomeController {
     @GetMapping("/")
     public String guest()
     {
-        return "products/index";
+        return "home/index";
     }
 
     @GetMapping("/user")
