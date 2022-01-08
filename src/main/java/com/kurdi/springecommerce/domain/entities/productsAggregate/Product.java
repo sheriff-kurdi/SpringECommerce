@@ -34,8 +34,8 @@ public class Product implements Serializable {
             column = @Column(name = "filename", nullable = false)
     )
     @CollectionTable(name = "IMAGE")
-    protected Set<Image> images = new HashSet<Image>();
+    protected Set<Image> images = new HashSet<Image>();*/
     @ManyToMany(mappedBy = "products")
-    protected Set<Category> categories = new HashSet<Category>();*/
+    protected Set<Category> categories = new HashSet<Category>();
 
 }

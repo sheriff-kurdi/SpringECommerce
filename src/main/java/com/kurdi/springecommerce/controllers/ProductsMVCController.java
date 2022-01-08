@@ -1,6 +1,7 @@
 package com.kurdi.springecommerce.controllers;
 
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
+import com.kurdi.springecommerce.repositories.CategoriesRepository;
 import com.kurdi.springecommerce.repositories.ProductsRepository;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import java.util.List;
 public class ProductsMVCController {
     @Autowired
     ProductsRepository productsRepository;
+    @Autowired
+    CategoriesRepository categoriesRepository;
 
 
     @GetMapping("/")
@@ -48,6 +51,14 @@ public class ProductsMVCController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
         model.addAttribute("product", product);
         return "products/save";
+    }
+
+    @GetMapping("details/{id}")
+    public String details(@PathVariable("id") String id, Model model) {
+        Product product = productsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
+        model.addAttribute("product", product);
+        return "products/details";
     }
 
     @GetMapping("delete/{id}")
