@@ -32,7 +32,7 @@ public class ProductsMVCController {
     public String create(Model model)
     {
         model.addAttribute("product", new Product());
-        return "products/create";
+        return "products/save";
     }
     @PostMapping("/save")
     public String save( Product product, BindingResult result, Model model)
@@ -47,7 +47,7 @@ public class ProductsMVCController {
         Product product = productsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
         model.addAttribute("product", product);
-        return "products/edit";
+        return "products/save";
     }
 
     @GetMapping("delete/{id}")

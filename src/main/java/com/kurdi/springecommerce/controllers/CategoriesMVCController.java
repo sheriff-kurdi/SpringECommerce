@@ -31,7 +31,7 @@ public class CategoriesMVCController {
     public String create(Model model)
     {
         model.addAttribute("category", new Category());
-        return "categories/create";
+        return "categories/save";
     }
     @PostMapping("/save")
     public String save(Category category, BindingResult result, Model model)
@@ -46,7 +46,7 @@ public class CategoriesMVCController {
         Category category = categoriesRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
         model.addAttribute("category", category);
-        return "category/edit";
+        return "categories/save";
     }
 
     @GetMapping("delete/{id}")

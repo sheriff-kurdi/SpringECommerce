@@ -21,11 +21,15 @@
     <br>
     <div class="container ">
         <form action="#" th:action="@{/products/save}" th:object="${product}" method="post">
+            <span th:if="${product.id != null}">
+                <input hidden type="text" th:field="*{id}" id="id" placeholder="id">
+            </span>
             <div class="p-4 bg-secondary">
                 <label for="name">Name</label>
                 <input type="text" class="form-control form-control-alternative" th:field="*{name}" id="name" placeholder="Name">
                 <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
             </div>
+
             <div class="p-4 bg-secondary">
                 <label for="price">Price</label>
                 <input type="text" class="form-control form-control-alternative" th:field="*{price}" id="price" placeholder="price">
@@ -33,7 +37,13 @@
             </div>
 
             <div class="p-4 bg-secondary">
-                <input type="submit" class="btn btn-sm btn-primary" value="Add Products">
+                <span th:if="${product.id != null}">
+                    <input type="submit" class="btn btn-sm btn-primary" value="Edit">
+                </span>
+                <span th:if="${product.id == null}">
+                    <input type="submit" class="btn btn-sm btn-primary" value="Create">
+                </span>
+
             </div>
         </form>
 
