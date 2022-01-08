@@ -1,36 +1,55 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<html xmlns:th="http://www.thymeleaf.org" >
+
 <head th:replace="shared/_layout::header"></head>
+
+
 <body>
 
-<div  th:replace="shared/_layout::nav"> </div>
 
-<a href="/products/create" class="btn btn-primary">Create</a>
+<!-- Side nav -->
+<div th:replace="shared/_layout::sidenav"></div>
 
-<div th:switch="${products}">
-    <h2 th:case="null">No products yet!</h2>
-    <div th:case="*">
-        <table class="table" >
-            <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="product : ${products}">
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.price}"></td>
-                <td>
-                    <a class="btn btn-secondary btn-sm" th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a> |
-                    <a  class="btn btn-danger btn-sm" th:href="@{/products/delete/{id}(id=${product.id})}">Delete</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+<!-- Main content -->
+<div class="main-content" id="panel">
+    <div th:replace="shared/_layout::topnav"></div>
+
+    <br>
+   <div class="container ">
+       <a href="/products/create" class="btn btn-block btn-primary">Create</a>
+       <div th:switch="${products}">
+           <h2 th:case="null">No products yet!</h2>
+           <div th:case="*">
+               <table class="table" >
+                   <thead>
+                   <tr>
+                       <th scope="col">Name</th>
+                       <th scope="col">Price</th>
+                       <th scope="col"></th>
+                   </tr>
+                   </thead>
+                   <tbody>
+                   <tr th:each="product : ${products}">
+                       <td th:text="${product.name}"></td>
+                       <td th:text="${product.price}"></td>
+                       <td>
+                           <a class="btn btn-secondary btn-sm" th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a> |
+                           <a  class="btn btn-danger btn-sm" th:href="@{/products/delete/{id}(id=${product.id})}">Delete</a>
+                       </td>
+                   </tr>
+                   </tbody>
+               </table>
+           </div>
+       </div>
+
+   </div>
 </div>
 
+<!-- Argon Scripts -->
+<head th:replace="shared/_layout::scripts"></head>
+
 </body>
+
+</html>
