@@ -1,6 +1,5 @@
 package com.kurdi.springecommerce.controllers.api;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Category;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
 import com.kurdi.springecommerce.repositories.CategoriesRepository;
@@ -24,14 +23,7 @@ public class ProductsController {
     {
         List<Product> products = productsRepository.findAll();
 
-/*        try {
-            Category category = categoriesRepository.findAll().stream().findFirst().get();
-            Product p = products.stream().findFirst().get();
-            p.getCategories().add(category);
-            category.getProducts().add(p);
-            categoriesRepository.save(category);
-            productsRepository.save(p);
-        }catch (Exception e){}*/
+
         return products;
     }
 
@@ -51,6 +43,24 @@ public class ProductsController {
         product.setId(null);
         productsRepository.save(product);
         return new ResponseEntity(product, HttpStatus.CREATED);
+    }
+    @PostMapping("/addCategory")
+    public ResponseEntity AddCategory(@RequestParam String productId, @RequestParam String categoryId)
+    {
+        Category category = categoriesRepository.findById(categoryId).get();
+        Product product = productsRepository.findById(productId).get();
+
+        try {
+            product.addCategory(category);
+            categoriesRepository.save(category);
+            productsRepository.save(product);
+        }catch (Exception e){
+            return new ResponseEntity(e, HttpStatus.OK);
+
+        }
+
+        return new ResponseEntity(product, HttpStatus.OK);
+
     }
 
     @PutMapping("/{id}")
