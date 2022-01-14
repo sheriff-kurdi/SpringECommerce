@@ -19,31 +19,55 @@
     <div th:replace="shared/_layout::topnav"></div>
 
     <br>
-    <div class="container ">
-        Name: <span th:text="${product.name}"></span>
-        Price: <span th:text="${product.name}"></span>
-        <h1>Categories:</h1>
-        <div th:switch="${product.Categories}">
-            <h2 th:case="null">No Categories yet!</h2>
-            <div th:case="*">
-                <table class="table" >
-                    <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="category : ${categories}">
-                        <td th:text="${category.name}"></td>
-                        <td>
-                            <a class="btn btn-success btn-sm" th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a> |
-                            <a class="btn btn-info btn-sm" th:href="@{/categories/details/{id}(id=${category.id})}">Details</a> |
-                            <a  class="btn btn-danger btn-sm" th:href="@{/categories/delete/{id}(id=${category.id})}">Delete</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-7" >
+                <div class="card">
+                    <div class="card-body">
+                        <img width="40%" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxASEBUSEBAPFRAVFRAPFQ8ODxAVEA8WFRYWFxUVFRUYHSggGBolGxcXITEhJSkrLy4uFx8zODMuNygtLisBCgoKDg0OGxAQFTUfIB0rLy0tLS0yLSstLysrKy0tLS0tLS0rLSsrLS4tLS0rLS0tLSstLTYrLS0tLS0rKy0rLf/AABEIAQoAvQMBIgACEQEDEQH/xAAbAAEAAQUBAAAAAAAAAAAAAAAAAwECBAUGB//EAEQQAAIBAgIFBwcJBgcBAAAAAAABAgMRBBIFBiExURMiQWFxkdEyUoGSobHBFCNCU2JysuHwFjNUgpSiByRjhJPC0kP/xAAYAQEBAQEBAAAAAAAAAAAAAAAAAQMCBP/EACIRAQABAwQDAQEBAAAAAAAAAAABAgMREyExURIyYUEicf/aAAwDAQACEQMRAD8A9fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABVooAAAAAAAAAAAAAAAAAAAAAAAAAAIMbiVTg5PfuS4voQmRj6T0nGiuhytezdlFcZPoRyWltP42tTnDDRbShy1SpQWWpCm75cjct8rS2rbaLtvTI50Hi3OpUd8LGTgo/xlVPnX/0YWez6UlbdFqXRanUfmZ1nvrVZzX3IPk6fotHN/MZRM1S2xFMZeX4DSmJpJV6M60IOTjnTk4OS3wqRldN9UttndcT0vVPWmOLXJ1FGGJSzOCbyVYrfOnfbbjF7V1rac7yUMFpOVKUYvB4txozpzS5O9S/ISt1TvT7JLzUY+smrssHUjUoymqWZSpVE+fh5rcm+nptferp9ciZp3dTiraXpoNRqzppYqjmaUa0LQq01ujK2yUfsSW1elb0zbm0TlhMYnAAAgAAAAAAAAAAAAAAAAAAByesFaeJxEcHRk1dN1Kkf/jSTSqTT8+TtCPW2/os6DTGPjh6FStN2jCLlf3WXT2Gv1U0bKlSlWrK2IrtVqt99OKXzdK/CEXt+05vpOZ32d07Rlr9Y6kaNLk6MVGFCllhTjuTy82K/tR0mjsIqNGnSW6nCFPtyxSv7DkMVXjVxdCm3tq11Ucb7ctK9Xb1XhFHbnNvfMrXtEQ4j/EvBZo05bVmjOk5LfFrnQafFc5+g6DRGIjjcDCVVJ8pDLUiuipF5aluDU4u3YiDXbD58HN9NNwqL0PLL+2TfoNJ/htjrSrYdvhiYJ9doVEuxqD/nHFeO15o/xrFKro/F5rOWXmzil+/ovbdLpkvKXWmulnpNCtGcIzhJShKMZxlF7JRkrpr0Go1o0P8AKKV4L56F3D7S6Yeno6zS6g6VtKeDm9y5ejfzZN8pTXZK7S4SfAU/zPiVf1Tnp2gANGQAAAAAAAAAAABbUmopt7km36ALgYEdL0eltdqv+G5h4nT8U3ydpJbL7X7Nljia6e3XhLdg5WWtFRP92vVl4l8NaH0wiu1SXxJq0utOpqNecbWq4vD4SNKfyeOIwUq1RZXnc6kXGGW6lltdtpPyXe286rWLSdKjSaq1IRlUU4wjOcY53bra4q/aczg9JU4Y6ri6k4ydSFOhCGyKoqF35Tbu3eV3s6Fxvh65aX0diVDlo1M0PJq0JU+VheUG7Xdmubez6VF9BPOMTu68J224bDVXQufE/LaqcayclCCnGUY03SULO11e7k9nnHbHnOrddUnSlCDVGMuTjnm+VlTk7Oo15F7XeVPYlse2x20dM0H9N+pLwJbqiIxlLlMzKXS9HPh60OmVKrFdrg0vaeX6vY1Usbh6iuoyqRw8tmxqvzIpv77g/QemrS9D6z+2fgcFLRMnW+UKpSfI1alSjhp0neTT+ampp2Vt6TtuFcxmJhbcTiYl6Web6R1fnDS8KqVbkYueJdanKyp53zb9GRScouPmu/G/eQ0pRaTz2uk8rUrxv0PYRYjF0JPy4vmzptNOzjKzakmtqvFHVeJjlzRmmeGxTvtBqNC6QpuEo8pFxhLLnct63rM39KzV+tSNh8spfW0/+SPiWmuJhzNMxKcEKxdL6yn68fEqsRT8+HrxOswmJSgJgqAAAAAAY+kJWpT7Gu/Z8TIMHTMrUrcZJfH4HNU7LTy5XGUl2dcXYmpK1NdOze+m+0jxbJH+7j2L3Hkephz3l8ERsugyKwdO3VOMlvjWw77L1YxfskzSaXpOri6dN3yScryy3Sy7bdtl7eo6XSNDlKU4JpScXlbWxSW2Lt2pGow+Ip4iNkoxxNOUJSo1FFzhOF9ln5UGm0+hp8Vsqwz7qUstlkhzFG2zd0Lu7jJjh4cPbLxMLRuIlVg6k/LlUquTfnZpJ+42UEERvCw4P1p+JcsLDg/Xn4ksX2dxIpfd47vZuAiWGhwfrz8TD0jTUeTazW5SEXz5bVK8bb+LXcbEwtMJ8i5JNuDhVsleTUJKTsul2TsEWaOmqFedF2UcRFRjylXLeTmlFpt9Em12smxFHalnqLZK6cr7U1xJZYfCYjkK1Wnyrot1aE4VXGNpWlzreVG6T6BiZOUrvym5yezpbu/aTGFyxYYd38uffHwMqNJ28uffHwKwiSFJdRof9xDbfY1d9TaMw1ugJ3o24Skvc/ibI9dPrDy1cyAA6cgAAGr07LmxXW33L8zaGk07PnpcI373+SOLnq7o5aLFolxHkLsRHWJMXuPK9DCZVAqR0vTNXpvRdGrBynCLmk2pWWaLXBmyTIsW+Y+xlRrNVF/lYrhKa9rfxN0jnNTqzdGotlo1ZLpuubC3xOjiwSvRVFCoRVMqW3K3AwKejFBt0qlSmm3JwhlcLva2oyTy3e12te5l06Nt7bfnPeyS4uFVQuUuAjf6uS5s19pPvX5G3NHq3LbNdUH+I3h6rfq89z2AAduAAADmtL1L1Z9Ty9yt77nS3OPxU7tvi2+9mV2dmtqN2NvfpJcWxSjtLcWzztv1jIqi0uuR0Go1mxUqdG6ezNFS+7fb7Dbmk1thfDTRRmYTR0aU6ipRpqnUUHku98cyk9t73Tj3GdDY7exGPh6ylTpT2c6NOXfHN8PZ6Vky8r0ASJlSiKhFQABUoVAFLlbhooBuNXZfOSX2L9zXidAc1oCXz3bGS9z+B0p6bXq89z2AAaMwAAQ42dqc39mXtVjk5LadLpidqT63Fe2/wOdZ57s7t7fC2O9IgxT2k1Pf+v1+kY2Ke0yawhuVRZcuIq41un4XoTXUbExNKxvSkupgQ6vV/wDKUJLfGMY3fFN0zZVHu9JpNVLvCKPTGdRbejn5l70bqTult27P1Yfokiy4jiXhFwuWlbgVFygAuuClylwM/QsrV4fzL+1nVnHaMnatT+9Fd+w7E9Nnhhd5AAasgAAavT8uZFcZX7l+Zo5G31hfkL77/Cag81z2ei36qR4mvrSuzOrStHtNazOWkKouRaiqI6XFJxurMFQjCjo2mvorfe3F8TLo0VFWSSXUiRFQKoqURUAitygArcrctuW3AvKNltyjYEuHnacXwlF9zR3TPP7noCN7P6wvfgADdiAADR6wvnQ+6/eatM2WsmyUPuyXtXiamM9h5bntL00eqHFyuYrRl1kY8jNpCwFGylwq9FyI7lcwEhW5DnGcInuMxByhR1BkT5hmMflBygyJnItzELqFvKDKsjMVTMeNQlUgJV+R6AcDhI5qkFxnBd7R3zN7P68978AAbsQAAaPWrDVZQjKjTlUcW04RcFKzttWZpPduv0nEz0rOlLLXo16fDlIb+xJtvuPUmjGxGj6NRWnThJcJK6MqreZy0pueMYw4nC4qnVV4ST7HuIatRHUS1QwObPGjkn51Kc4PsaTs11NEc9TcJLyuXf8AuKq/C0cTZlpqw5SVdcSx4hcTq/2GwHmVvTi8T/7LlqRo/pozfbicS/8AuTRq7XWhx7xkeKI3j4ecu9HafsPo3+GT7atZ++RctSdG/wAHSfbnfvZdGe01o6cLLScPOXeRS0xT85d56B+xOjP4HDemmn7y6OpujFuwGD/p6fgND6a3x5xLTlLz495HLT9Lz496PUI6q6PW7BYT+mpeBLHV3BLdhML/AE9LwLofU1/jyWesVL6yPrIhlrPR+th6yPZY6Hwq3YeguyjT8CWOj6K3UaS7KcPAaH01/jxRazUfrYesi5axUvPXee2xw1NboR9EUXKlHghoR2a89PFYadg9zb7IsyaWlr7o1X2U6j+B7GolbDRjs1p6cNqrh6lSrCcqc404vNmqRcb23JJ7XtsdzcWBrRT4wyrq8pyAA6cgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/9k="  alt="...">
+                        <h4 class="card-title" th:text="${product.name}"></h4>
+                        <p class="card-text "><b>Price:</b> <span th:text="${product.price}"></span></p>
+                        <a class="btn btn-success btn-sm" th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a>
+                        <a class="btn btn-info btn-sm" th:href="@{/products/details/{id}(id=${product.id})}">Details</a>
+                        <a  class="btn btn-danger btn-sm" th:href="@{/products/delete/{id}(id=${product.id})}">Delete</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5" >
+                <div class="card ">
+                    <div class="card-body">
+                        <h4 class="card-title">Categories</h4>
+                        <div th:switch="${product.Categories}">
+                            <h2 th:case="null">No Categories yet!</h2>
+                            <div th:case="*">
+                                <table class="table-responsive" >
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="category : ${categories}">
+                                        <td th:text="${category.name}"></td>
+                                        <td>
+                                            <a class="btn btn-success btn-sm" th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-info btn-sm" th:href="@{/categories/details/{id}(id=${category.id})}">Details</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
 
