@@ -1,5 +1,6 @@
 package com.kurdi.springecommerce.domain.entities.productsAggregate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.jsonschema.JsonSerializableSchema;
@@ -37,7 +38,7 @@ public class Category implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID")
 
     )
-
+    @JsonBackReference
     protected List<Product> products = new ArrayList<>();
 
 }

@@ -24,14 +24,14 @@ public class ProductsController {
     {
         List<Product> products = productsRepository.findAll();
 
-        try {
+/*        try {
             Category category = categoriesRepository.findAll().stream().findFirst().get();
             Product p = products.stream().findFirst().get();
             p.getCategories().add(category);
             category.getProducts().add(p);
             categoriesRepository.save(category);
             productsRepository.save(p);
-        }catch (Exception e){}
+        }catch (Exception e){}*/
         return products;
     }
 

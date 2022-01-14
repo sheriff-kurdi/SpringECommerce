@@ -2,6 +2,7 @@ package com.kurdi.springecommerce.domain.entities.productsAggregate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.jsonschema.JsonSerializableSchema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,6 +38,7 @@ public class Product implements Serializable {
     )
     @CollectionTable(name = "IMAGE")
     protected Set<Image> images = new HashSet<Image>();*/
+@JsonManagedReference
     @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
     protected List<Category> categories = new ArrayList<>();
