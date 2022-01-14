@@ -61,14 +61,16 @@ public class ProductsMVCController {
         Product product = productsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
         model.addAttribute("product", product);
-        List <Category> categories = productsRepository.findById(id).get().getCategories();
+        List <Category> categories  = productsRepository.findById(id).get().getCategories();
+        List <Category> productCategories = categoriesRepository.findAll();
+
+        model.addAttribute("productCategories", productCategories);
         model.addAttribute("categories", categories);
         return "products/details";
     }
 
     @GetMapping("delete/{id}")
-    public String delete(@PathVariable String id)
-    {
+    public String delete(@PathVariable String id){
         if (!productsRepository.existsById(id))
         {
             return "redirect:/products/";
@@ -82,6 +84,16 @@ public class ProductsMVCController {
         }
 
         return "redirect:/products/";
+    }
+
+    @GetMapping("addToCategory/{id}")
+    public String addToCategory(@PathVariable("id") String productId, Model model) {
+        Product product = productsRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + productId));
+        model.addAttribute("product", product);
+        List <Category> categories = productsRepository.findById(productId).get().getCategories();
+        model.addAttribute("categories", categories);
+        return "products/addToCategory";
     }
 
 
