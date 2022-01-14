@@ -22,9 +22,9 @@
     <div class="container ">
         Name: <span th:text="${product.name}"></span>
         Price: <span th:text="${product.name}"></span>
-        Categories:
+        <h1>Categories:</h1>
         <div th:switch="${product.Categories}">
-            <h2 th:case="null">No products yet!</h2>
+            <h2 th:case="null">No Categories yet!</h2>
             <div th:case="*">
                 <table class="table" >
                     <thead>
@@ -34,12 +34,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="product : ${product.Categories}">
-                        <td th:text="${product.name}"></td>
+                    <tr th:each="category : ${categories}">
+                        <td th:text="${category.name}"></td>
                         <td>
-                            <a class="btn btn-success btn-sm" th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a> |
-                            <a class="btn btn-info btn-sm" th:href="@{/products/details/{id}(id=${product.id})}">Details</a> |
-                            <a  class="btn btn-danger btn-sm" th:href="@{/products/delete/{id}(id=${product.id})}">Delete</a>
+                            <a class="btn btn-success btn-sm" th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a> |
+                            <a class="btn btn-info btn-sm" th:href="@{/categories/details/{id}(id=${category.id})}">Details</a> |
+                            <a  class="btn btn-danger btn-sm" th:href="@{/categories/delete/{id}(id=${category.id})}">Delete</a>
                         </td>
                     </tr>
                     </tbody>

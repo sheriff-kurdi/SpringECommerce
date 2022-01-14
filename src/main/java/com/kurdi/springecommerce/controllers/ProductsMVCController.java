@@ -1,5 +1,6 @@
 package com.kurdi.springecommerce.controllers;
 
+import com.kurdi.springecommerce.domain.entities.productsAggregate.Category;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
 import com.kurdi.springecommerce.repositories.CategoriesRepository;
 import com.kurdi.springecommerce.repositories.ProductsRepository;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
+import java.util.Set;
+
 @ApiIgnore
 @Controller
 @RequestMapping("products")
@@ -58,6 +61,8 @@ public class ProductsMVCController {
         Product product = productsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
         model.addAttribute("product", product);
+        List <Category> categories = productsRepository.findById(id).get().getCategories();
+        model.addAttribute("categories", categories);
         return "products/details";
     }
 
@@ -68,7 +73,14 @@ public class ProductsMVCController {
         {
             return "redirect:/products/";
         }
-        productsRepository.delete(productsRepository.findById(id).get());
+        try{
+            productsRepository.delete(productsRepository.findById(id).get());
+
+        }catch (Exception e)
+        {
+
+        }
+
         return "redirect:/products/";
     }
 
