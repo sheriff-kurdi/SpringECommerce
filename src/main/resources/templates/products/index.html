@@ -22,6 +22,7 @@
     <div th:switch="${products}">
       <h2 th:case="null">No products yet!</h2>
       <div th:case="*">
+        <div class="table-responsive">
         <table class="table" >
           <thead>
           <tr>
@@ -42,6 +43,7 @@
           </tr>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
 
