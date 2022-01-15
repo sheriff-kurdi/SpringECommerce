@@ -81,15 +81,15 @@
                                     </thead>
                                     <tbody>
 
-                                    <form action="#" th:action="@{/products/addToCategory}" th:object="${addCategoryToProductDTOList}" method="post">
+                                    <form action="#" th:action="@{/products/addToCategory}" th:object="${AddCategoryToProductDTOForm}" method="post">
 
-                                        <tr th:each="addCategoryToProductDTOItem , itemStat: ${addCategoryToProductDTOList}">
+                                        <tr th:each="addCategoryToProductDTOItem , itemStat: ${productCategoriesList}">
 <!--
                                             th:text="${addCategoryToProductDTOItem.categoryId}">
 -->
                                             <td>
 
-                                                <input type="text"  th:field="*{categoryId}" id="categoryId" placeholder="categoryId">
+                                                <input type="text"  th:field="*{productCategoriesList[__${itemStat.index}__].categoryId}" id="categoryId" placeholder="categoryId">
 
                                             </td>
 

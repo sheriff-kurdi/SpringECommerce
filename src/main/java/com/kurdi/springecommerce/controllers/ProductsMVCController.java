@@ -2,7 +2,7 @@ package com.kurdi.springecommerce.controllers;
 
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Category;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
-import com.kurdi.springecommerce.dto.product.AddCategoryToProductDTO;
+import com.kurdi.springecommerce.dto.product.AddCategoryToProductDTOForm;
 import com.kurdi.springecommerce.dto.product.ProductCategorySellect;
 import com.kurdi.springecommerce.repositories.CategoriesRepository;
 import com.kurdi.springecommerce.repositories.ProductsRepository;
@@ -60,7 +60,7 @@ public class ProductsMVCController {
         Product product = productsRepository.findById(id).get();
         List <Category> productCategories  = productsRepository.findById(id).get().getCategories();
         List <Category> categories = categoriesRepository.findAll();
-        AddCategoryToProductDTO addCategoryToProductDTO = new AddCategoryToProductDTO();
+        AddCategoryToProductDTOForm addCategoryToProductDTOForm = new AddCategoryToProductDTOForm();
 
         model.addAttribute("product", product);
         model.addAttribute("productCategories", productCategories);
@@ -71,9 +71,9 @@ public class ProductsMVCController {
             productCategorySellect.setCategoryId(category.getId());
             productCategorySellect.setProductId(product.getId());
             productCategorySellect.setSelected(false);
-            addCategoryToProductDTO.getProductCategoriesList().add(productCategorySellect);
+            addCategoryToProductDTOForm.getProductCategoriesList().add(productCategorySellect);
         }
-        model.addAttribute("addCategoryToProductDTO", addCategoryToProductDTO);
+        model.addAttribute("addCategoryToProductDTO", addCategoryToProductDTOForm);
         return "products/details";
     }
 
@@ -95,7 +95,7 @@ public class ProductsMVCController {
     }
 
     @PostMapping("/addToCategory")
-    public String addToCategory(ArrayList<ProductCategorySellect> addCategoryToProductDTOList, BindingResult result, Model model) {
+    public String addToCategory(AddCategoryToProductDTOForm addCategoryToProductDTOForm, BindingResult result, Model model) {
         /*Product product = productsRepository.findById(addCategoryToProductDTO.getProductId()).get();
         Category category = categoriesRepository.findById(addCategoryToProductDTO.getCategoryId()).get();*/
         return "products/products";

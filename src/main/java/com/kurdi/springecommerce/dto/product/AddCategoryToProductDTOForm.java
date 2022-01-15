@@ -11,6 +11,6 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddCategoryToProductDTO {
+public class AddCategoryToProductDTOForm {
     List<ProductCategorySellect> productCategoriesList = new ArrayList<>();
 }
