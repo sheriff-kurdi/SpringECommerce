@@ -29,6 +29,11 @@
                 <input type="text" class="form-control form-control-alternative" th:field="*{name}" id="name" placeholder="Name">
                 <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
             </div>
+            <div class="p-4 bg-secondary">
+                <label for="name">Description</label>
+                <input type="text" class="form-control form-control-alternative" th:field="*{description}" id="description" placeholder="Description">
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+            </div>
 
             <div class="p-4 bg-secondary">
                 <label for="price">Price</label>

@@ -22,6 +22,7 @@ public class Product implements Serializable {
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
     private String name;
+    private String description;
     private double price;
 /*    @ElementCollection
     //edit table without changing the embeddable class
