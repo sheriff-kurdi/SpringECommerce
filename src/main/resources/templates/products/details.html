@@ -38,7 +38,6 @@
             <div class="col-md-5" >
                 <div class="card ">
                     <div class="card-body">
-                        <h4 class="card-title">Product Categories</h4>
 
                         <div th:switch="${productCategories}">
                             <h2 th:case="null">No Categories yet!</h2>
@@ -47,23 +46,20 @@
                                 <table class="table-responsive" >
                                     <thead>
                                     <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col"></th>
+                                        <th scope="col">Product Categories</th>
                                         <th scope="col"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:each="category : ${productCategories}">
-                                        <td th:text="${category.name}"></td>
-                                        <td>
                                             <form action="#" th:action="@{/products/removeCategory}" th:object="${category}" method="post">
                                                 <input hidden th:value="${product.id}"  th:name="productId"  />
                                                 <input hidden th:value="${category.id}"  th:name="categoryId"  />
-                                                <input disabled th:value="${category.name}"  />
-                                                <input class="btn btn-sm btn-danger" type="submit" value="Remove Category">
+
+                                                <td> <span  th:text="${category.name}">  </span></td>
+                                                <td><input class="btn btn-sm btn-danger" type="submit" value="-"></td>
 
                                             </form>
-                                        </td>
 
                                     </tr>
                                     </tbody>
@@ -86,15 +82,13 @@
                                     <tbody>
 
                                         <tr th:each="category : ${categories}">
-                                            <td>
                                                 <form action="#" th:action="@{/products/addToCategory}" th:object="${category}" method="post">
                                                     <input hidden th:value="${product.id}"  th:name="productId" id="productId" />
                                                     <input hidden th:value="${category.id}"  th:name="categoryId" id="categoryId" />
-                                                    <input disabled th:value="${category.name}"  />
-                                                    <input class="btn btn-sm btn-primary" type="submit" value="Add Category">
+                                                   <td><span  th:text="${category.name}">  </span></td>
+                                                   <td><input class="btn btn-sm btn-primary" type="submit" value="+"></td>
 
                                                 </form>
-                                            </td>
                                         </tr>
 
 
