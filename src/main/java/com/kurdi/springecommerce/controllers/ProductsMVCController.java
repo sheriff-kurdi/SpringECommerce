@@ -3,6 +3,7 @@ package com.kurdi.springecommerce.controllers;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Category;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
 import com.kurdi.springecommerce.dto.product.AddCategoryToProductDTO;
+import com.kurdi.springecommerce.dto.product.ProductCategorySellect;
 import com.kurdi.springecommerce.repositories.CategoriesRepository;
 import com.kurdi.springecommerce.repositories.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @ApiIgnore
@@ -56,13 +58,22 @@ public class ProductsMVCController {
     @GetMapping("details/{id}")
     public String details(@PathVariable("id") String id, Model model) {
         Product product = productsRepository.findById(id).get();
-        List <Category> categories  = productsRepository.findById(id).get().getCategories();
-        List <Category> productCategories = categoriesRepository.findAll();
+        List <Category> productCategories  = productsRepository.findById(id).get().getCategories();
+        List <Category> categories = categoriesRepository.findAll();
+        AddCategoryToProductDTO addCategoryToProductDTO = new AddCategoryToProductDTO();
 
         model.addAttribute("product", product);
         model.addAttribute("productCategories", productCategories);
         model.addAttribute("categories", categories);
-        model.addAttribute("addCategoryToCartDTO", new AddCategoryToProductDTO());
+        for( Category category: categories)
+        {
+            ProductCategorySellect productCategorySellect = new ProductCategorySellect();
+            productCategorySellect.setCategoryId(category.getId());
+            productCategorySellect.setProductId(product.getId());
+            productCategorySellect.setSelected(false);
+            addCategoryToProductDTO.getProductCategoriesList().add(productCategorySellect);
+        }
+        model.addAttribute("addCategoryToProductDTO", addCategoryToProductDTO);
         return "products/details";
     }
 
@@ -83,12 +94,10 @@ public class ProductsMVCController {
         return "redirect:/products/";
     }
 
-    @PostMapping("addToCategory/")
-    public String addToCategory(AddCategoryToProductDTO addCategoryToProductDTO, BindingResult result,Model model) {
-        Product product = productsRepository.findById(addCategoryToProductDTO.getProductId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + addCategoryToProductDTO.getProductId()));
-        Category category = categoriesRepository.findById(addCategoryToProductDTO.getCategoryId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + addCategoryToProductDTO.getCategoryId()));
+    @PostMapping("/addToCategory")
+    public String addToCategory(ArrayList<ProductCategorySellect> addCategoryToProductDTOList, BindingResult result, Model model) {
+        /*Product product = productsRepository.findById(addCategoryToProductDTO.getProductId()).get();
+        Category category = categoriesRepository.findById(addCategoryToProductDTO.getCategoryId()).get();*/
         return "products/products";
     }
 

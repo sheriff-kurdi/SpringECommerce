@@ -5,12 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddCategoryToProductDTO {
-    List<ProductCategorySellect> productCategoriesList = new ArrayList<>();
+public class ProductCategorySellect {
+    String productId;
+    String categoryId;
+    boolean isSelected;
 }
+

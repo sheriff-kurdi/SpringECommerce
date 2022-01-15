@@ -22,7 +22,7 @@
     <div class="container ">
         <form action="#" th:action="@{/products/save}" th:object="${product}" method="post">
             <span th:if="${product.id != null}">
-                <input hidden type="text" th:field="*{id}" id="id" placeholder="id">
+                    <input hidden type="text" th:field="*{id}" id="id" placeholder="id">
             </span>
             <div class="p-4 bg-secondary">
                 <label for="name">Name</label>
@@ -32,7 +32,7 @@
 
             <div class="p-4 bg-secondary">
                 <label for="price">Price</label>
-                <input type="text" class="form-control form-control-alternative" th:field="*{price}" id="price" placeholder="price">
+                    <input type="text" class="form-control form-control-alternative" th:field="*{price}" id="price" placeholder="price">
                 <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
             </div>
 

@@ -40,60 +40,10 @@
                     <div class="card-body">
                         <h4 class="card-title">Categories</h4>
 
-
-                        <!-- Button trigger modal -->
-                        <a class="btn btn-block btn-secondary "  data-toggle="modal" data-target="#exampleModal">Add To Category</a>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">All Categories</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div th:switch="${productCategories}">
-                                            <h2 th:case="null">No Categories yet!</h2>
-                                            <div th:case="*">
-                                                <table class="table-responsive" >
-                                                    <thead>
-                                                    <tr>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col"></th>
-
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr th:each="category : ${productCategories}">
-                                                        <td th:text="${category.name}"></td>
-                                                        <td>
-                                                            <form action="#" th:action="@{/products/addToCategory}" th:object="${addCategoryToProductDTO}" method="post">
-                                                                <input th:field="*{productId}" value="${product.id}" id="productId">
-                                                                <input th:field="*{categoryId}" value="${category.id}" id="categoryId">
-                                                                <a type="submit" class="btn btn-success btn-sm" >Add To Product</a>
-                                                            </form>
-
-                                                        </td>
-
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div th:switch="${product.Categories}">
+                        <div th:switch="${productCategories}">
                             <h2 th:case="null">No Categories yet!</h2>
                             <div th:case="*">
+
                                 <table class="table-responsive" >
                                     <thead>
                                     <tr>
@@ -103,7 +53,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="category : ${categories}">
+                                    <tr th:each="category : ${productCategories}">
                                         <td th:text="${category.name}"></td>
                                         <td>
                                             <a class="btn btn-success btn-sm" th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a>
@@ -116,6 +66,84 @@
                                 </table>
                             </div>
                         </div>
+
+
+                        <div th:switch="${categories}">
+                            <h2 th:case="null">No Categories yet!</h2>
+                            <div th:case="*">
+                                <table class="table-responsive">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Categories</th>
+                                        <th scope="col"></th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <form action="#" th:action="@{/products/addToCategory}" th:object="${addCategoryToProductDTOList}" method="post">
+
+                                        <tr th:each="addCategoryToProductDTOItem , itemStat: ${addCategoryToProductDTOList}">
+<!--
+                                            th:text="${addCategoryToProductDTOItem.categoryId}">
+-->
+                                            <td>
+
+                                                <input type="text"  th:field="*{categoryId}" id="categoryId" placeholder="categoryId">
+
+                                            </td>
+
+                                            <td>
+
+<!--
+                                                <input type="text" th:field="*{addCategoryToProductDTOItem.categoryId}" th:value="${addCategoryToProductDTOItem.categoryId}"/>
+-->
+                                            </td>
+                                            <td>
+                                                <!--
+                                                 <input th:field="*{productId}" th:value="${category.productId}" id="productId">
+                                                  <input th:field="*{categoryId}" th:value="${category.categoryId}" id="categoryId">
+                                                  <input th:field="*{isSelected}" th:value="${category.isSelected}" id="isSelected" type="checkbox">-->
+
+                                            </td>
+                                        </tr>
+                                        <input type="submit" value="save">
+                                    </form>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Launch demo modal
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
 
                 </div>
