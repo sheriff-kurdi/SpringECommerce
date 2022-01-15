@@ -100,7 +100,7 @@ public class ProductsMVCController {
         Category category = categoriesRepository.findById(addCategoryToProductDTO.getCategoryId()).get();*/
         return "products/products";
     }
-
+/*https://www.baeldung.com/thymeleaf-list*/
 
 
 }
