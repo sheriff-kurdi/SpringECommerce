@@ -43,4 +43,10 @@ public class Product implements Serializable {
         this.getCategories().add(category);
         return this;
     }
+    public Product removeCategory(Category category)
+    {
+        category.getProducts().remove(this);
+        this.getCategories().remove(category);
+        return this;
+    }
 }

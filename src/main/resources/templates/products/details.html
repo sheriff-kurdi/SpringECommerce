@@ -38,7 +38,7 @@
             <div class="col-md-5" >
                 <div class="card ">
                     <div class="card-body">
-                        <h4 class="card-title">Categories</h4>
+                        <h4 class="card-title">Product Categories</h4>
 
                         <div th:switch="${productCategories}">
                             <h2 th:case="null">No Categories yet!</h2>
@@ -56,11 +56,15 @@
                                     <tr th:each="category : ${productCategories}">
                                         <td th:text="${category.name}"></td>
                                         <td>
-                                            <a class="btn btn-success btn-sm" th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a>
+                                            <form action="#" th:action="@{/products/removeCategory}" th:object="${category}" method="post">
+                                                <input hidden th:value="${product.id}"  th:name="productId"  />
+                                                <input hidden th:value="${category.id}"  th:name="categoryId"  />
+                                                <input disabled th:value="${category.name}"  />
+                                                <input class="btn btn-sm btn-danger" type="submit" value="Remove Category">
+
+                                            </form>
                                         </td>
-                                        <td>
-                                            <a class="btn btn-info btn-sm" th:href="@{/categories/details/{id}(id=${category.id})}">Details</a>
-                                        </td>
+
                                     </tr>
                                     </tbody>
                                 </table>
@@ -74,41 +78,24 @@
                                 <table class="table-responsive">
                                     <thead>
                                     <tr>
-                                        <th scope="col">Categories</th>
+                                        <th scope="col">All Categories</th>
                                         <th scope="col"></th>
 
                                     </tr>
                                     </thead>
                                     <tbody>
 
-                                    <form action="#" th:action="@{/products/addToCategory}" th:object="${AddCategoryToProductDTOForm}" method="post">
-
-                                        <tr th:each="addCategoryToProductDTOItem , itemStat: ${productCategoriesList}">
-<!--
-                                            th:text="${addCategoryToProductDTOItem.categoryId}">
--->
+                                        <tr th:each="category : ${categories}">
                                             <td>
+                                                <form action="#" th:action="@{/products/addToCategory}" th:object="${category}" method="post">
+                                                    <input hidden th:value="${product.id}"  th:name="productId" id="productId" />
+                                                    <input hidden th:value="${category.id}"  th:name="categoryId" id="categoryId" />
+                                                    <input disabled th:value="${category.name}"  />
+                                                    <input class="btn btn-sm btn-primary" type="submit" value="Add Category">
 
-                                                <input type="text"  th:field="*{productCategoriesList[__${itemStat.index}__].categoryId}" id="categoryId" placeholder="categoryId">
-
-                                            </td>
-
-                                            <td>
-
-<!--
-                                                <input type="text" th:field="*{addCategoryToProductDTOItem.categoryId}" th:value="${addCategoryToProductDTOItem.categoryId}"/>
--->
-                                            </td>
-                                            <td>
-                                                <!--
-                                                 <input th:field="*{productId}" th:value="${category.productId}" id="productId">
-                                                  <input th:field="*{categoryId}" th:value="${category.categoryId}" id="categoryId">
-                                                  <input th:field="*{isSelected}" th:value="${category.isSelected}" id="isSelected" type="checkbox">-->
-
+                                                </form>
                                             </td>
                                         </tr>
-                                        <input type="submit" value="save">
-                                    </form>
 
 
                                     </tbody>
@@ -116,32 +103,6 @@
                             </div>
                         </div>
 
-
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Launch demo modal
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
 
                     </div>

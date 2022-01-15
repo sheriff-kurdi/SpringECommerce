@@ -60,20 +60,11 @@ public class ProductsMVCController {
         Product product = productsRepository.findById(id).get();
         List <Category> productCategories  = productsRepository.findById(id).get().getCategories();
         List <Category> categories = categoriesRepository.findAll();
-        AddCategoryToProductDTOForm addCategoryToProductDTOForm = new AddCategoryToProductDTOForm();
 
         model.addAttribute("product", product);
         model.addAttribute("productCategories", productCategories);
         model.addAttribute("categories", categories);
-        for( Category category: categories)
-        {
-            ProductCategorySellect productCategorySellect = new ProductCategorySellect();
-            productCategorySellect.setCategoryId(category.getId());
-            productCategorySellect.setProductId(product.getId());
-            productCategorySellect.setSelected(false);
-            addCategoryToProductDTOForm.getProductCategoriesList().add(productCategorySellect);
-        }
-        model.addAttribute("addCategoryToProductDTO", addCategoryToProductDTOForm);
+
         return "products/details";
     }
 
@@ -95,10 +86,25 @@ public class ProductsMVCController {
     }
 
     @PostMapping("/addToCategory")
-    public String addToCategory(AddCategoryToProductDTOForm addCategoryToProductDTOForm, BindingResult result, Model model) {
-        /*Product product = productsRepository.findById(addCategoryToProductDTO.getProductId()).get();
-        Category category = categoriesRepository.findById(addCategoryToProductDTO.getCategoryId()).get();*/
-        return "products/products";
+    public String addToCategory(@RequestParam String productId,@RequestParam String categoryId) {
+        Product product = productsRepository.findById(productId).get();
+        Category category = categoriesRepository.findById(categoryId).get();
+        try {
+            product.addCategory(category);
+            productsRepository.save(product);
+        }catch (Exception e){}
+        return "redirect:/products/details/" + productId;
+    }
+
+    @PostMapping("/removeCategory")
+    public String removeCategory(@RequestParam String productId,@RequestParam String categoryId) {
+        Product product = productsRepository.findById(productId).get();
+        Category category = categoriesRepository.findById(categoryId).get();
+        try {
+            product.removeCategory(category);
+            productsRepository.save(product);
+        }catch (Exception e){}
+        return "redirect:/products/details/" + productId;
     }
 /*https://www.baeldung.com/thymeleaf-list*/
 
