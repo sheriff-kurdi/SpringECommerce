@@ -43,10 +43,12 @@
                             <h2 th:case="null">No Categories yet!</h2>
                             <div th:case="*">
 
+                                <h4>Product Categories</h4>
                                 <table class="table-responsive" >
                                     <thead>
                                     <tr>
-                                        <th scope="col">Product Categories</th>
+                                        <th scope="col"> </th>
+                                        <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         <th scope="col"></th>
                                     </tr>
                                     </thead>
@@ -57,6 +59,7 @@
                                                 <input hidden th:value="${category.id}"  th:name="categoryId"  />
 
                                                 <td> <span  th:text="${category.name}">  </span></td>
+                                                <td></td>
                                                 <td><input class="btn btn-sm btn-danger" type="submit" value="-"></td>
 
                                             </form>
@@ -71,10 +74,14 @@
                         <div th:switch="${categories}">
                             <h2 th:case="null">No Categories yet!</h2>
                             <div th:case="*">
+                                <hr>
+                                <h4>All Categories</h4>
+
                                 <table class="table-responsive">
                                     <thead>
                                     <tr>
-                                        <th scope="col">All Categories</th>
+                                        <th scope="col"></th>
+                                        <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         <th scope="col"></th>
 
                                     </tr>
@@ -86,6 +93,7 @@
                                                     <input hidden th:value="${product.id}"  th:name="productId" id="productId" />
                                                     <input hidden th:value="${category.id}"  th:name="categoryId" id="categoryId" />
                                                    <td><span  th:text="${category.name}">  </span></td>
+                                                    <td ></td>
                                                    <td><input class="btn btn-sm btn-primary" type="submit" value="+"></td>
 
                                                 </form>
