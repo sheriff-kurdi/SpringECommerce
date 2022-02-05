@@ -79,7 +79,6 @@ public class ProductsMVCController {
 
         }catch (Exception e)
         {
-
         }
 
         return "redirect:/products/";

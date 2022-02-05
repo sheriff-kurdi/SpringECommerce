@@ -33,8 +33,13 @@ public class Product implements Serializable {
     @CollectionTable(name = "IMAGE")
     protected Set<Image> images = new HashSet<Image>();*/
 @JsonManagedReference
-    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+@ManyToMany(fetch = FetchType.EAGER)
+@JoinTable(
+        name = "CATEGORY_Product",
+        joinColumns = @JoinColumn(name = "PRODUCT_ID"),
+        inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID")
 
+)
     protected List<Category> categories = new ArrayList<>();
 
 

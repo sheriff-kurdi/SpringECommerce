@@ -29,14 +29,16 @@ public class Category implements Serializable {
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
     private String name;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+/*    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "CATEGORY_Product",
             joinColumns = @JoinColumn(name = "CATEGORY_ID"),
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID")
 
-    )
-    @JsonBackReference
+    )*/
+@ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
+
+@JsonBackReference
     protected List<Product> products = new ArrayList<>();
 
 }
