@@ -34,7 +34,24 @@
 </head>
 <body>
 
-    <!-- sidenav -->
+<div  th:fragment="action-messages">
+    <div th:if="${failed}">
+        <div class="alert alert-warning" role="alert">
+            <strong>Failed!</strong> <span th:text="${message}">!</span>
+        </div>
+    </div>
+
+    <div th:if="${success}">
+        <div class="alert alert-success" role="alert">
+            <strong>Success!</strong> <span th:text="${message}">!</span>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- sidenav -->
     <nav th:fragment="sidenav" class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
         <div class="scrollbar-inner">
             <!-- Brand -->

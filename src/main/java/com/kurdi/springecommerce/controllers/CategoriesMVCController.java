@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
@@ -51,7 +52,7 @@ public class CategoriesMVCController {
     }
 
     @GetMapping("delete/{id}")
-    public String delete(@PathVariable String id)
+    public String delete( Model model, RedirectAttributes redirectAttributes, @PathVariable String id)
     {
         if (!categoriesRepository.existsById(id))
         {
@@ -59,9 +60,16 @@ public class CategoriesMVCController {
         }
         try {
             categoriesRepository.delete(categoriesRepository.findById(id).get());
+            redirectAttributes.addFlashAttribute("success", true);
+            redirectAttributes.addFlashAttribute("message",
+                    "Deleted Successfully");
 
         }catch (Exception e)
         {
+            redirectAttributes.addFlashAttribute("failed", true);
+            redirectAttributes.addFlashAttribute("message",
+                    "Cannot Delete Categories That Have Registered Products");
+
         }
         return "redirect:/categories/";
     }
