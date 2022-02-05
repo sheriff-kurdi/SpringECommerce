@@ -57,7 +57,12 @@ public class CategoriesMVCController {
         {
             return "redirect:/categories/";
         }
-        categoriesRepository.delete(categoriesRepository.findById(id).get());
+        try {
+            categoriesRepository.delete(categoriesRepository.findById(id).get());
+
+        }catch (Exception e)
+        {
+        }
         return "redirect:/categories/";
     }
 
