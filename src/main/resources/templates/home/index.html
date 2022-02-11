@@ -18,7 +18,14 @@
 
     <br>
     <div class="container ">
-        Welcome At Home.
+        <span th:text="#{lang.change}"></span>:
+        <select id="locales">
+            <option value=""></option>
+            <option value="en" th:text="#{lang.eng}"></option>
+            <option value="ar" th:text="#{lang.ar}"></option>
+        </select>
+        <h1 th:text="#{greeting}"></h1>
+
 
     </div>
 </div>
@@ -26,6 +33,18 @@
 <!-- Argon Scripts -->
 <head th:replace="shared/_layout::scripts"></head>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#locales").change(function () {
+        var selectedOption = $('#locales').val();
+        if (selectedOption != ''){
+            window.location.replace('?lang=' + selectedOption);
+        }
+    });
+});
+</script>
 </body>
 
 </html>
