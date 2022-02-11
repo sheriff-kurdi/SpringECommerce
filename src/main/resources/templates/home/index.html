@@ -18,14 +18,23 @@
 
     <br>
     <div class="container ">
-        <span th:text="#{lang.change}"></span>:
-        <select id="locales">
-            <option value=""></option>
-            <option value="en" th:text="#{lang.eng}"></option>
-            <option value="ar" th:text="#{lang.ar}"></option>
-        </select>
+
+        <div class="col-2">
+            <span th:text="#{lang.code}"></span>
+            <select class="browser-default custom-select" id="locales">
+                <option selected th:text="#{lang.change}" value=""></option>
+                <option value="en" th:text="#{lang.eng}"></option>
+                <option value="ar" th:text="#{lang.ar}"></option>
+            </select>
+        </div>
         <h1 th:text="#{greeting}"></h1>
 
+        <select class="browser-default custom-select">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
 
     </div>
 </div>
@@ -33,18 +42,7 @@
 <!-- Argon Scripts -->
 <head th:replace="shared/_layout::scripts"></head>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#locales").change(function () {
-        var selectedOption = $('#locales').val();
-        if (selectedOption != ''){
-            window.location.replace('?lang=' + selectedOption);
-        }
-    });
-});
-</script>
+
 </body>
 
 </html>
