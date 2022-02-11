@@ -20,7 +20,7 @@
   <div class="container">
     <div class="card">
       <div class="card-body">
-        <a href="/products/create" class="btn btn-block btn-secondary">Create</a> <br>
+        <a href="/products/create" class="btn btn-block btn-secondary" th:text="#{create}"></a> <br>
         <div th:switch="${products}">
           <h2 th:case="null">No products yet!</h2>
           <div th:case="*">
@@ -28,8 +28,8 @@
               <table class="table align-items-center">
                 <thead class="thead-light">
                 <tr>
-                  <th class="sort" scope="col">Name</th>
-                  <th  class="sort"scope="col">Price</th>
+                  <th class="sort" scope="col" th:text="#{name}"></th>
+                  <th  class="sort"scope="col" th:text="#{price}"></th>
                   <th class="sort" scope="col"></th>
                 </tr>
                 </thead>
@@ -38,9 +38,9 @@
                   <td th:text="${product.name}"></td>
                   <td th:text="${product.price}"></td>
                   <td>
-                    <a class="btn btn-success btn-sm" th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a>
-                    <a class="btn btn-info btn-sm" th:href="@{/products/details/{id}(id=${product.id})}">Details</a>
-                    <a  class="btn btn-danger btn-sm" th:href="@{/products/delete/{id}(id=${product.id})}">Delete</a>
+                    <a class="btn btn-success btn-sm" th:href="@{/products/edit/{id}(id=${product.id})}" th:text="#{edit}"></a>
+                    <a class="btn btn-info btn-sm" th:href="@{/products/details/{id}(id=${product.id})}" th:text="#{details}"></a>
+                    <a  class="btn btn-danger btn-sm" th:href="@{/products/delete/{id}(id=${product.id})}" th:text="#{delete}"></a>
                   </td>
                 </tr>
                 </tbody>
