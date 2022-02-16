@@ -1,10 +1,14 @@
 package com.kurdi.springecommerce.infrastructure.services;
 
+import com.kurdi.springecommerce.domain.dto.cart.CartItemDTO;
 import com.kurdi.springecommerce.domain.entities.CartsAggregate.Cart;
 import com.kurdi.springecommerce.domain.entities.CartsAggregate.CartItem;
 import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
-import com.kurdi.springecommerce.dto.cart.CartItemDTO;
+import com.kurdi.springecommerce.infrastructure.repositories.CartItemsRepository;
+import com.kurdi.springecommerce.infrastructure.repositories.CartsRepository;
+import com.kurdi.springecommerce.infrastructure.repositories.ProductsRepository;
+import com.kurdi.springecommerce.infrastructure.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

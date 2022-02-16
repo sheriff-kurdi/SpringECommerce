@@ -1,11 +1,11 @@
 package com.kurdi.springecommerce.infrastructure.services;
 
+import com.kurdi.security.Permissions;
+import com.kurdi.security.Roles;
 import com.kurdi.springecommerce.domain.entities.CartsAggregate.Cart;
 import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
 import com.kurdi.springecommerce.domain.entities.UsersAggregate.Authority;
-import com.kurdi.springecommerce.repositories.UsersRepository;
-import com.kurdi.springecommerce.security.Permissions;
-import com.kurdi.springecommerce.security.Roles;
+import com.kurdi.springecommerce.infrastructure.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

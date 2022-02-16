@@ -1,7 +1,7 @@
 package com.kurdi.springecommerce.web.controllers;
 
 import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
-import com.kurdi.springecommerce.services.UsersService;
+import com.kurdi.springecommerce.infrastructure.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
 package com.kurdi.springecommerce.web.controllers;
 
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
-import com.kurdi.springecommerce.repositories.ProductsRepository;
+import com.kurdi.springecommerce.infrastructure.repositories.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
