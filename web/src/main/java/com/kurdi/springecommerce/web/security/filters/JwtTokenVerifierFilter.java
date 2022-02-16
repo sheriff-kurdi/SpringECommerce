@@ -1,7 +1,7 @@
-package com.kurdi.security.filters;
+package com.kurdi.springecommerce.web.security.filters;
 
 import com.google.common.base.Strings;
-import com.kurdi.springecommerce.security.Roles;
+import com.kurdi.security.Roles;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

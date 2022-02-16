@@ -1,9 +1,10 @@
 package com.kurdi.springecommerce.web.config;
 
-import com.kurdi.springecommerce.security.CustomAuthenticationProvider;
-import com.kurdi.springecommerce.security.Roles;
-import com.kurdi.springecommerce.security.filters.CustomUserNameAuthenticationFilter;
-import com.kurdi.springecommerce.security.filters.JwtTokenVerifierFilter;
+import com.kurdi.security.Roles;
+
+import com.kurdi.springecommerce.web.security.CustomAuthenticationProvider;
+import com.kurdi.springecommerce.web.security.filters.CustomUserNameAuthenticationFilter;
+import com.kurdi.springecommerce.web.security.filters.JwtTokenVerifierFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new CustomUserNameAuthenticationFilter(authenticationManager()))
-                .addFilterAfter(new JwtTokenVerifierFilter(),CustomUserNameAuthenticationFilter.class)
+                .addFilterAfter(new JwtTokenVerifierFilter(), CustomUserNameAuthenticationFilter.class)
                 .authorizeRequests()
                 .mvcMatchers("/user")
                 .permitAll()

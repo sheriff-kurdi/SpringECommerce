@@ -1,7 +1,7 @@
 package com.kurdi.springecommerce.web.controllers.api;
 
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Category;
-import com.kurdi.springecommerce.repositories.CategoriesRepository;
+import com.kurdi.springecommerce.infrastructure.repositories.CategoriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.kurdi.security;
+package com.kurdi.springecommerce.web.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;

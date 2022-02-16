@@ -1,7 +1,7 @@
-package com.kurdi.security;
+package com.kurdi.springecommerce.web.security;
 
 import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
-import com.kurdi.springecommerce.repositories.UsersRepository;
+import com.kurdi.springecommerce.infrastructure.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

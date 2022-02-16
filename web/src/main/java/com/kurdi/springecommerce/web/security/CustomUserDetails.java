@@ -1,4 +1,4 @@
-package com.kurdi.security;
+package com.kurdi.springecommerce.web.security;
 
 import com.kurdi.springecommerce.domain.entities.UsersAggregate.AppUser;
 import org.springframework.security.core.GrantedAuthority;

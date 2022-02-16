@@ -1,7 +1,7 @@
-package com.kurdi.security.filters;
+package com.kurdi.springecommerce.web.security.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kurdi.springecommerce.security.UsernameAndPasswordAuthenticationRequest;
+import com.kurdi.springecommerce.web.security.UsernameAndPasswordAuthenticationRequest;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;

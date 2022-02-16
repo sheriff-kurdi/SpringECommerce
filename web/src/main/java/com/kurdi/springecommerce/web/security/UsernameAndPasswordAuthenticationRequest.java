@@ -1,4 +1,4 @@
-package com.kurdi.security;
+package com.kurdi.springecommerce.web.security;
 
 import lombok.Data;
 
