@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(basePackages = {"com.kurdi"})
-@EntityScan(basePackages = {"com.kurdi"})
-@ComponentScan(basePackages = {"com.kurdi"})
+@EnableJpaRepositories(basePackages = {"com.kurdi","infrastructure","domain","security","web"})
+@EntityScan(basePackages = {"com.kurdi","infrastructure","domain","security","web"})
+@ComponentScan(basePackages = {"com.kurdi","infrastructure","domain","security","web"})
 @SpringBootApplication
 public class SpringECommerceApplication {
 
