@@ -1,5 +1,4 @@
 package com.kurdi.springecommerce.domain.entities.UsersAggregate;
-
 import com.kurdi.springecommerce.domain.entities.CartsAggregate.Cart;
 import lombok.*;
 

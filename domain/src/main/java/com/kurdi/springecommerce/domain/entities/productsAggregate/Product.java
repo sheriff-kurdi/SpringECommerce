@@ -1,4 +1,4 @@
-package com.kurdi.springecommerce.domain.entities.productsAggregate;
+package  com.kurdi.springecommerce.domain.entities.productsAggregate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
