@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="shared/_layout::header"></head>
-<body>
-<div  th:replace="shared/_layout::nav"> </div>
 
-    Welcome at home.
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<head th:replace="shared/_layout::header"></head>
+
+
+<body>
+
+
+<!-- Side nav -->
+<div th:replace="shared/_layout::sidenav"></div>
+
+<!-- Main content -->
+<div class="main-content" id="panel">
+    <div th:replace="shared/_layout::topnav"></div>
+
+    <br>
+    <div class="container ">
+
+        <div class="col-2">
+            <span th:text="#{lang.code}"></span>
+            <select class="browser-default custom-select" id="locales">
+                <option selected th:text="#{lang.change}" value=""></option>
+                <option value="en" th:text="#{lang.eng}"></option>
+                <option value="ar" th:text="#{lang.ar}"></option>
+            </select>
+        </div>
+        <h1 th:text="#{greeting}"></h1>
+
+        <select class="browser-default custom-select">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+
+    </div>
+</div>
+
+<!-- Argon Scripts -->
+<head th:replace="shared/_layout::scripts"></head>
+
+
 </body>
+
 </html>

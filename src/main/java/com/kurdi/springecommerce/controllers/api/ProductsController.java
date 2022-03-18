@@ -1,6 +1,8 @@
 package com.kurdi.springecommerce.controllers.api;
 
+import com.kurdi.springecommerce.domain.entities.productsAggregate.Category;
 import com.kurdi.springecommerce.domain.entities.productsAggregate.Product;
+import com.kurdi.springecommerce.repositories.CategoriesRepository;
 import com.kurdi.springecommerce.repositories.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +16,15 @@ import java.util.List;
 public class ProductsController {
     @Autowired
     ProductsRepository productsRepository;
+    @Autowired
+    CategoriesRepository categoriesRepository;
     @GetMapping("/")
     public List<Product> get()
     {
-        return productsRepository.findAll();
+        List<Product> products = productsRepository.findAll();
+
+
+        return products;
     }
 
     @GetMapping("/{id}")
@@ -36,6 +43,24 @@ public class ProductsController {
         product.setId(null);
         productsRepository.save(product);
         return new ResponseEntity(product, HttpStatus.CREATED);
+    }
+    @PostMapping("/addCategory")
+    public ResponseEntity AddCategory(@RequestParam String productId, @RequestParam String categoryId)
+    {
+        Category category = categoriesRepository.findById(categoryId).get();
+        Product product = productsRepository.findById(productId).get();
+
+        try {
+            product.addCategory(category);
+            categoriesRepository.save(category);
+            productsRepository.save(product);
+        }catch (Exception e){
+            return new ResponseEntity(e, HttpStatus.OK);
+
+        }
+
+        return new ResponseEntity(product, HttpStatus.OK);
+
     }
 
     @PutMapping("/{id}")
