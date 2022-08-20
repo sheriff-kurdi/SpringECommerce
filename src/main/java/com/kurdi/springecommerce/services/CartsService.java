@@ -43,7 +43,7 @@ public class CartsService {
 
     public Cart AddToCartDemo() {
         Product product = Product.builder()
-                .name("shirt")
+                .nameEn("shirt")
                 .price(150)
                 .build();
         productsRepository.save(product);

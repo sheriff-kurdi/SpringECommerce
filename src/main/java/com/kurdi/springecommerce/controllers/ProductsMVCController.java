@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @ApiIgnore
 @Controller
@@ -58,7 +60,7 @@ public class ProductsMVCController {
     @GetMapping("details/{id}")
     public String details(@PathVariable("id") String id, Model model) {
         Product product = productsRepository.findById(id).get();
-        List <Category> productCategories  = productsRepository.findById(id).get().getCategories();
+        Set<Category> productCategories  = productsRepository.findById(id).get().getCategories();
         List <Category> categories = categoriesRepository.findAll();
 
         model.addAttribute("product", product);

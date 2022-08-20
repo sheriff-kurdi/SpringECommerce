@@ -31,9 +31,12 @@
 
                             </div>
                             <div class="col-md-6">
-                                <h4 class="card-title" th:text="${product.name}"></h4>
+                                <h4 class="card-title" th:text="${product.nameEn}"></h4>
                                 <p class="card-text "><b>Price:</b> <span th:text="${product.price}"></span></p>
+                                <p class="card-text "><b>Stock:</b> <span th:text="${product.stock}"></span></p>
                                 <p class="card-text "><b>Description:</b> <span th:text="${product.description}"></span></p>
+
+
                                 <a class="btn btn-success btn-sm" th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a>
                                 <a class="btn btn-info btn-sm" th:href="@{/products/details/{id}(id=${product.id})}">Details</a>
                                 <a  class="btn btn-danger btn-sm" th:href="@{/products/delete/{id}(id=${product.id})}">Delete</a>

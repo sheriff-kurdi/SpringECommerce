@@ -28,15 +28,17 @@
               <table class="table align-items-center">
                 <thead class="thead-light">
                 <tr>
-                  <th class="sort" scope="col" th:text="#{name}"></th>
-                  <th  class="sort"scope="col" th:text="#{price}"></th>
+                  <th class="sort" scope="col" th:text="#{product.name}"></th>
+                  <th  class="sort"scope="col" th:text="#{product.price}"></th>
+                  <th  class="sort"scope="col" th:text="#{product.stock}"></th>
                   <th class="sort" scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="product : ${products}">
-                  <td th:text="${product.name}"></td>
+                  <td th:text="${product.nameEn}"></td>
                   <td th:text="${product.price}"></td>
+                  <td th:text="${product.stock}"></td>
                   <td>
                     <a class="btn btn-success btn-sm" th:href="@{/products/edit/{id}(id=${product.id})}" th:text="#{edit}"></a>
                     <a class="btn btn-info btn-sm" th:href="@{/products/details/{id}(id=${product.id})}" th:text="#{details}"></a>
