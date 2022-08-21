@@ -47,7 +47,7 @@ public class CartsService {
                 .price(150)
                 .build();
         productsRepository.save(product);
-        AppUser user = userRepository.findUserByUsername("sheriff").get();
+        AppUser user = userRepository.findUserByEmail("sheriff").get();
         Cart cart = addToCart(user, product, 22);
         return cart;
     }

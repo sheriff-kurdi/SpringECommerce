@@ -23,7 +23,7 @@ public class CartsController {
 
     @PostMapping("/")
     public ResponseEntity<Cart> addToCart(@RequestBody Set<CartItemDTO> cartItemDTOSet) {
-        AppUser user = usersRepository.findUserByUsername("sheriff").get();
+        AppUser user = usersRepository.findUserByEmail("sheriff").get();
    
         Cart cart = cartsService.addRangeToCart(user, cartItemDTOSet);
         return ResponseEntity.ok(cart);
@@ -31,21 +31,21 @@ public class CartsController {
 
     @GetMapping("/")
     public ResponseEntity<Cart> get() {
-        AppUser user = usersRepository.findUserByUsername("sheriff").get();
+        AppUser user = usersRepository.findUserByEmail("sheriff").get();
         Cart cart = user.getCart();
         return ResponseEntity.ok(cart);
     }
 
     @DeleteMapping("/")
     public ResponseEntity<Cart> delete() {
-        AppUser user = usersRepository.findUserByUsername("sheriff").get();
+        AppUser user = usersRepository.findUserByEmail("sheriff").get();
         Cart cart = cartsService.clearCart(user);
         return ResponseEntity.ok(cart);
     }
 
     @PutMapping("/")
     public ResponseEntity<Cart> edit(@RequestBody List<CartItemDTO> cartItemDTOS) {
-        AppUser user = usersRepository.findUserByUsername("sheriff").get();
+        AppUser user = usersRepository.findUserByEmail("sheriff").get();
         Cart updatedCart = cartsService.ediCart(user, cartItemDTOS);
         return ResponseEntity.ok(updatedCart);
     }

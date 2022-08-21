@@ -33,6 +33,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin();
 */
         http
+
+                .formLogin()
+                .loginPage("/login")
+                .usernameParameter("email")
+                .and()
                 .csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

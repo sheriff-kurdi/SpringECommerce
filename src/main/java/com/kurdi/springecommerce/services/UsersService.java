@@ -25,7 +25,7 @@ public class UsersService {
     public AppUser register() {
         List<Authority> authorities = new ArrayList<>();
         AppUser user = AppUser.builder()
-                .username("sheriff")
+                .email("sheriff.kurdi@gmail.com")
                 .password(passwordEncoder.encode("123"))
                 .authorities(authorities)
                 .build();
@@ -42,7 +42,7 @@ public class UsersService {
                 .name(Permissions.EmployeeRead.getPermission())
                 .build());
 
-        if (userRepository.findUserByUsername(user.getUsername()).isEmpty()) {
+        if (userRepository.findUserByEmail(user.getEmail()).isEmpty()) {
             userRepository.save(user);
             //TODO when creating user make an app event to create his cart instead of making it here.
             user.setCart(new Cart(user));

@@ -10,13 +10,16 @@ import com.kurdi.springecommerce.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
+@RequestMapping("auth")
 public class AuthController {
 
     @Autowired
@@ -25,5 +28,10 @@ public class AuthController {
     @GetMapping("/register")
     public ResponseEntity<AppUser> register() {
         return ResponseEntity.ok(usersService.register());
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "auth/login";
     }
 }

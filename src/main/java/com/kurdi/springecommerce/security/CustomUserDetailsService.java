@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                         "Problem during authentication!");
 
         AppUser u = userRepository
-                .findUserByUsername(userName)
+                .findUserByEmail(userName)
                 .orElseThrow(s);
 
 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="shared/_layout::header"></head>
+
+
+<body>
+
+
+<!-- Side nav -->
+<div th:replace="shared/_layout::sidenav"></div>
+
+<!-- Main content -->
+<div class="main-content" id="panel">
+    <div th:replace="shared/_layout::topnav"></div>
+
+    <br>
+    <div class="container ">
+        <form action="#" th:action="@{/login}"  method="post">
+
+            <div class="p-4 bg-secondary">
+                <label th:text="#{user.email}" for="email"></label>
+                <input type="text" class="form-control form-control-alternative"  id="email"
+                       th:placeholder="#{user.email}">
+                <span th:if="${#fields.hasErrors('email')}" ></span>
+            </div>
+
+            <div class="p-4 bg-secondary">
+                <label th:text="#{user.password}" for="password"></label>
+                <input type="text" class="form-control form-control-alternative"  id="password"
+                       th:placeholder="#{user.password}">
+                <span th:if="${#fields.hasErrors('password')}" ></span>
+            </div>
+
+
+
+            <input type="submit" class="btn btn-sm btn-primary" th:value="#{actions.login}">
+
+
+        </form>
+
+
+    </div>
+</div>
+
+<!-- Argon Scripts -->
+<head th:replace="shared/_layout::scripts"></head>
+
+</body>
+
+</html>
+
+
