@@ -20,7 +20,7 @@
   <div class="container">
     <div class="card">
       <div class="card-body">
-        <a href="/products/create" class="btn btn-block btn-secondary" th:text="#{create}"></a> <br>
+        <a href="/products/create" class="btn btn-block btn-secondary" th:text="#{actions.create}"></a> <br>
         <div th:switch="${products}">
           <h2 th:case="null">No products yet!</h2>
           <div th:case="*">
@@ -28,21 +28,23 @@
               <table class="table align-items-center">
                 <thead class="thead-light">
                 <tr>
-                  <th class="sort" scope="col" th:text="#{product.name}"></th>
-                  <th  class="sort"scope="col" th:text="#{product.price}"></th>
-                  <th  class="sort"scope="col" th:text="#{product.stock}"></th>
+                  <th class="sort" scope="col" th:text="#{general.nameEn}"></th>
+                  <th class="sort" scope="col" th:text="#{general.nameAr}"></th>
+                  <th  class="sort"scope="col" th:text="#{general.price}"></th>
+                  <th  class="sort"scope="col" th:text="#{general.stock}"></th>
                   <th class="sort" scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="product : ${products}">
                   <td th:text="${product.nameEn}"></td>
+                  <td th:text="${product.nameAr}"></td>
                   <td th:text="${product.price}"></td>
                   <td th:text="${product.stock}"></td>
                   <td>
-                    <a class="btn btn-success btn-sm" th:href="@{/products/edit/{id}(id=${product.id})}" th:text="#{edit}"></a>
-                    <a class="btn btn-info btn-sm" th:href="@{/products/details/{id}(id=${product.id})}" th:text="#{details}"></a>
-                    <a  class="btn btn-danger btn-sm" th:href="@{/products/delete/{id}(id=${product.id})}" th:text="#{delete}"></a>
+                    <a class="btn btn-success btn-sm" th:href="@{/products/edit/{id}(id=${product.id})}" th:text="#{actions.edit}"></a>
+                    <a class="btn btn-info btn-sm" th:href="@{/products/details/{id}(id=${product.id})}" th:text="#{actions.details}"></a>
+                    <a  class="btn btn-danger btn-sm" th:href="@{/products/delete/{id}(id=${product.id})}" th:text="#{actions.delete}"></a>
                   </td>
                 </tr>
                 </tbody>

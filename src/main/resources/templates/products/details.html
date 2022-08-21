@@ -32,6 +32,7 @@
                             </div>
                             <div class="col-md-6">
                                 <h4 class="card-title" th:text="${product.nameEn}"></h4>
+                                <h4 class="card-title" th:text="${product.nameAr}"></h4>
                                 <p class="card-text "><b>Price:</b> <span th:text="${product.price}"></span></p>
                                 <p class="card-text "><b>Stock:</b> <span th:text="${product.stock}"></span></p>
                                 <p class="card-text "><b>Description:</b> <span th:text="${product.description}"></span></p>
@@ -70,7 +71,8 @@
                                                 <input hidden th:value="${product.id}"  th:name="productId"  />
                                                 <input hidden th:value="${category.id}"  th:name="categoryId"  />
 
-                                                <td> <span  th:text="${category.name}">  </span></td>
+                                                <td> <span  th:text="${category.nameEn}">  </span></td>
+                                                <td> <span  th:text="${category.nameAr}">  </span></td>
                                                 <td></td>
                                                 <td><input class="btn btn-sm btn-danger" type="submit" value="-"></td>
 
@@ -104,7 +106,8 @@
                                                 <form action="#" th:action="@{/products/addToCategory}" th:object="${category}" method="post">
                                                     <input hidden th:value="${product.id}"  th:name="productId" id="productId" />
                                                     <input hidden th:value="${category.id}"  th:name="categoryId" id="categoryId" />
-                                                   <td><span  th:text="${category.name}">  </span></td>
+                                                   <td><span  th:text="${category.nameEn}"> - </span></td>
+                                                   <td><span  th:text="${category.nameAr}">  </span></td>
                                                     <td ></td>
                                                    <td><input class="btn btn-sm btn-primary" type="submit" value="+"></td>
 

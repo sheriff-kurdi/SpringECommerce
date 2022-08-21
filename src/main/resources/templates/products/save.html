@@ -25,32 +25,32 @@
                     <input hidden type="text" th:field="*{id}" id="id" placeholder="id">
             </span>
             <div class="p-4 bg-secondary">
-                <label th:text="#{product.nameEn}" for="nameEn"></label>
-                <input type="text" class="form-control form-control-alternative" th:field="*{nameEn}" id="nameEn" th:placeholder="#{product.nameEn}">
+                <label th:text="#{general.nameEn}" for="nameEn"></label>
+                <input type="text" class="form-control form-control-alternative" th:field="*{nameEn}" id="nameEn" th:placeholder="#{general.nameEn}">
                 <span th:if="${#fields.hasErrors('nameEn')}" th:errors="*{nameEn}"></span>
             </div>
             <div class="p-4 bg-secondary">
-                <label th:text="#{product.nameAr}" for="nameAr"></label>
-                <input type="text" class="form-control form-control-alternative" th:field="*{nameAr}" id="nameAr" th:placeholder="#{product.nameAr}">
+                <label th:text="#{general.nameAr}" for="nameAr"></label>
+                <input type="text" class="form-control form-control-alternative" th:field="*{nameAr}" id="nameAr" th:placeholder="#{general.nameAr}">
                 <span th:if="${#fields.hasErrors('nameAr')}" th:errors="*{nameAr}"></span>
             </div>
             <div class="p-4 bg-secondary">
-                <label th:text="#{product.description}" for="description"></label>
-                <input type="text" class="form-control form-control-alternative" th:field="*{description}" id="description" th:placeholder="#{product.description}">
+                <label th:text="#{general.description}" for="description"></label>
+                <input type="text" class="form-control form-control-alternative" th:field="*{description}" id="description" th:placeholder="#{general.description}">
                 <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
             </div>
 
             <div class="p-4 bg-secondary">
-                <label th:text="#{product.price}" for="price"></label>
-                    <input type="text" class="form-control form-control-alternative" th:field="*{price}" id="price" th:placeholder="#{product.price}">
+                <label th:text="#{general.price}" for="price"></label>
+                    <input type="text" class="form-control form-control-alternative" th:field="*{price}" id="price" th:placeholder="#{general.price}">
                 <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
             </div>
 
 
 
             <div class="p-4 bg-secondary">
-                <label th:text="#{product.stock}" for="stock"></label>
-                <input type="text" class="form-control form-control-alternative" th:field="*{stock}" id="stock" th:placeholder="#{product.stock}">
+                <label th:text="#{general.stock}" for="stock"></label>
+                <input type="text" class="form-control form-control-alternative" th:field="*{stock}" id="stock" th:placeholder="#{general.stock}">
                 <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span>
             </div>
 
@@ -60,7 +60,7 @@
                     <input type="submit" class="btn btn-sm btn-primary" value="Edit">
                 </span>
                 <span th:if="${product.id == null}">
-                    <input type="submit" class="btn btn-sm btn-primary" th:value="#{create}" value="Create">
+                    <input type="submit" class="btn btn-sm btn-primary" th:value="#{actions.create}" value="Create">
                 </span>
 
             </div>

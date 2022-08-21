@@ -28,7 +28,8 @@ public class Category implements Serializable {
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
-    private String name;
+    private String nameEn;
+    private String nameAr;
 /*    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "CATEGORY_Product",

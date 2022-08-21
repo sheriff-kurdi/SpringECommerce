@@ -25,17 +25,23 @@
                 <input hidden type="text" th:field="*{id}" id="id" placeholder="id">
             </span>
             <div class="p-4 bg-secondary">
-                <label for="name">Name</label>
-                <input type="text" class="form-control form-control-alternative" th:field="*{name}" id="name" placeholder="Name">
-                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                <label th:text="#{general.nameAr}" for="name"></label>
+                <input type="text" class="form-control form-control-alternative" th:field="*{nameEn}" id="name" >
+                <span th:if="${#fields.hasErrors('nameEn')}" th:errors="*{nameEn}"></span>
+            </div>
+
+            <div class="p-4 bg-secondary">
+                <label th:text="#{general.nameAr}" for="name"></label>
+                <input type="text" class="form-control form-control-alternative" th:field="*{nameAr}" id="nameAr">
+                <span th:if="${#fields.hasErrors('nameAr')}" th:errors="*{nameAr}"></span>
             </div>
 
             <div class="p-4 bg-secondary">
                 <span th:if="${category.id != null}">
-                    <input type="submit" class="btn btn-sm btn-primary" value="Edit">
+                    <input type="submit" class="btn btn-sm btn-primary" th:value="#{actions.edit}">
                 </span>
                 <span th:if="${category.id == null}">
-                    <input type="submit" class="btn btn-sm btn-primary" value="Create">
+                    <input type="submit" class="btn btn-sm btn-primary" th:value="#{actions.create}">
                 </span>
 
             </div>

@@ -26,7 +26,7 @@
 
 
 
-        <a class="btn btn-block btn-secondary" href="/categories/create">Create</a> <br>
+        <a class="btn btn-block btn-secondary" href="/categories/create" th:text="#{actions.create}"></a>
         <div th:switch="${categories}">
           <h2 th:case="null">No category yet!</h2>
           <div th:case="*">
@@ -34,18 +34,20 @@
               <table class="table align-items-center">
                 <thead class="thead-light">
                 <tr>
-                  <th class="sort" scope="col">Name</th>
-                  <th class="sort" scope="col">Actions</th>
+                  <th th:text="#{general.nameEn}" class="sort" scope="col"></th>
+                  <th th:text="#{general.nameAr}" class="sort" scope="col"></th>
+                  <th class="sort" scope="col"></th>
                 </tr>
                 </thead>
                 <tbody class="list">
                 <tr th:each="category : ${categories}">
-                  <td th:text="${category.name}"></td>
+                  <td th:text="${category.nameEn}"></td>
+                  <td th:text="${category.nameAr}"></td>
                   <td>
                     <a class="btn btn-info btn-sm"
-                       th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a>
+                       th:href="@{/categories/edit/{id}(id=${category.id})}" th:text="#{actions.edit}"></a>
                     <a class="btn btn-danger btn-sm"
-                       th:href="@{/categories/delete/{id}(id=${category.id})}">Delete</a>
+                       th:href="@{/categories/delete/{id}(id=${category.id})}"th:text="#{actions.delete}"></a>
                   </td>
                 </tr>
                 </tbody>
